@@ -1,6 +1,6 @@
 import { Box, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Map } from "../components/map";
+import { TruckMap } from "../components/map";
 import NoResults from "../components/no-results";
 import PageHeader from "../components/page-header";
 import { TruckListSkeleton } from "../components/skeleton";
@@ -88,7 +88,7 @@ const TruckList = () => {
           subtitle="Confira a localização e detalhes dos caminhões disponíveis."
         />
 
-        <Map trucks={sortedTrucks} selectedTruck={selectedTruck} />
+        <TruckMap trucks={sortedTrucks} selectedTruck={selectedTruck} />
 
         {isLoading && <TruckListSkeleton />}
 

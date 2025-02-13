@@ -1,11 +1,19 @@
-import { Container, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import HomeIcon from "../assets/images/home.svg";
+import PageHeader from "../components/page-header";
 
-export function Home() {
+const Home = () => {
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        Home
-      </Typography>
-    </Container>
+    <Box display="flex" flexDirection="column" gap={2} padding="20px 24px">
+      <PageHeader
+        title="Boas-vindas, Alexandre Borges!"
+        subtitle="Aqui, você pode visualizar e cadastrar caminhões, além de acompanhar suas localizações no mapa."
+      />
+      <Box display="flex" justifyContent="center">
+        <img src={HomeIcon} />
+      </Box>
+    </Box>
   );
-}
+};
+
+export default Home;
