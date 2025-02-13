@@ -12,6 +12,7 @@ export const colors = {
   antiFlashWhite: "#F0F0F0",
   brightGray: "#EDEDED",
   black: "#000000",
+  chineseWhite: "#E0E0E0",
   royalAzure: "#0038A8",
   darkLiver: "#4D4D4D",
   smokyBlack: "#0F0F0F",

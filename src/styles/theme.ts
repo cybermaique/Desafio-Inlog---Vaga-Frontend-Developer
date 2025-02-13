@@ -10,15 +10,6 @@ const theme = createTheme({
       main: colors.smokyBlack,
     },
   },
-  components: {
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
-          backgroundColor: "#ffffff",
-        },
-      },
-    },
-  },
 });
 
 export default theme;
