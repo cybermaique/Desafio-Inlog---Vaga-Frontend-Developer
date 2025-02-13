@@ -1,0 +1,11 @@
+sonar.projectKey=vehicle-tracker
+sonar.host.url=http://localhost:9000
+sonar.projectName=SEU_PROJETO
+sonar.token=SEU_TOKEN
+sonar.language=ts
+sonar.sources=src
+sonar.exclusions=**/*.test.tsx, **/*.test.ts, **/node_modules/**, **/dist/**
+sonar.tests=src
+sonar.test.inclusions=**/*.test.tsx, **/*.test.ts
+sonar.typescript.lcov.reportPaths=coverage/lcov.info
+sonar.sourceEncoding=UTF-8
