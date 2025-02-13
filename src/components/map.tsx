@@ -1,10 +1,11 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { Truck } from "../interfaces/truck";
 
 interface MapProps {
   trucks: Truck[];
+  selectedTruck: Truck | null;
 }
 
 const truckIcon = new L.Icon({
@@ -13,7 +14,19 @@ const truckIcon = new L.Icon({
   popupAnchor: [0, -40],
 });
 
-export function Map({ trucks }: MapProps) {
+function FlyToTruck({ selectedTruck }: { selectedTruck: Truck | null }) {
+  const map = useMap();
+  if (selectedTruck) {
+    map.flyTo(
+      [selectedTruck.coordinates.latitude, selectedTruck.coordinates.longitude],
+      10,
+      { animate: true }
+    );
+  }
+  return null;
+}
+
+export function Map({ trucks, selectedTruck }: MapProps) {
   return (
     <MapContainer
       center={[-23.55052, -46.63331]}
@@ -21,6 +34,8 @@ export function Map({ trucks }: MapProps) {
       style={{ height: "400px", width: "100%" }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+      <FlyToTruck selectedTruck={selectedTruck} />
 
       {trucks.map((truck) => (
         <Marker

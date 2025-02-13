@@ -19,7 +19,9 @@ export const TruckTable = ({ trucks }: TruckTableProps) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Identificador</TableCell>
+            <TableCell>
+              <strong>Identificador</strong>
+            </TableCell>
             <TableCell>
               <strong>Placa</strong>
             </TableCell>

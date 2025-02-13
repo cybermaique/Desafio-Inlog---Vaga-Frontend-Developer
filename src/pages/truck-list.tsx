@@ -1,8 +1,17 @@
-import { Container, Typography } from "@mui/material";
+import {
+  Container,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { Map } from "../components/map";
 import { TruckListSkeleton } from "../components/skeleton";
-import { TruckTable } from "../components/truck-table";
 import { useGetTrucks } from "../services/get-trucks";
 import { useLoadingStore } from "../stores/loading";
 
@@ -11,10 +20,22 @@ interface UserLocation {
   longitude: number;
 }
 
+interface Truck {
+  id: string;
+  identifier: string;
+  license_plate: string;
+  tracker_serial_number: string;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
 export const TruckList = () => {
   const { setLoading } = useLoadingStore();
   const { data: trucks, error, isLoading } = useGetTrucks();
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
+  const [selectedTruck, setSelectedTruck] = useState<Truck | null>(null);
 
   const sortedTrucks = userLocation
     ? [...(trucks ?? [])].sort((a, b) => {
@@ -84,7 +105,7 @@ export const TruckList = () => {
         Listagem de Caminhões
       </Typography>
 
-      <Map trucks={sortedTrucks} />
+      <Map trucks={sortedTrucks} selectedTruck={selectedTruck} />
 
       {isLoading && <TruckListSkeleton />}
 
@@ -100,7 +121,48 @@ export const TruckList = () => {
       )}
 
       {!isLoading && sortedTrucks.length > 0 && (
-        <TruckTable trucks={sortedTrucks} />
+        <TableContainer component={Paper} sx={{ mt: 2 }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <strong>Identificador</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Placa</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Rastreador</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Latitude</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Longitude</strong>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {sortedTrucks.map((truck) => (
+                <TableRow
+                  key={truck.id}
+                  onClick={() => setSelectedTruck(truck)}
+                  sx={{
+                    cursor: "pointer",
+                    backgroundColor:
+                      selectedTruck?.id === truck.id ? "#f0f0f0" : "inherit",
+                  }}
+                >
+                  <TableCell>{truck.identifier}</TableCell>
+                  <TableCell>{truck.license_plate}</TableCell>
+                  <TableCell>{truck.tracker_serial_number}</TableCell>
+                  <TableCell>{truck.coordinates.latitude}</TableCell>
+                  <TableCell>{truck.coordinates.longitude}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       )}
     </Container>
   );
