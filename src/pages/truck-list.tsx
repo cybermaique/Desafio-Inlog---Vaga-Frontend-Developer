@@ -1,43 +1,107 @@
-import { Card, CardContent, Container, Typography } from "@mui/material";
-import useSWR from "swr";
+import { Container, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Map } from "../components/map";
+import { TruckListSkeleton } from "../components/skeleton";
+import { TruckTable } from "../components/truck-table";
+import { useGetTrucks } from "../services/get-trucks";
+import { useLoadingStore } from "../stores/loading";
 
-interface Vehicle {
-  id: number;
-  identifier: string;
-  license_plate: string;
-  tracker_serial_number: string;
-  coordinates: { latitude: number; longitude: number };
+interface UserLocation {
+  latitude: number;
+  longitude: number;
 }
 
-const fetcher = (url: string) =>
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => data.trucks);
+export const TruckList = () => {
+  const { setLoading } = useLoadingStore();
+  const { data: trucks, error, isLoading } = useGetTrucks();
+  const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
 
-export function TruckList() {
-  const { data, error } = useSWR<Vehicle[]>("/api/caminhoes", fetcher);
+  const sortedTrucks = userLocation
+    ? [...(trucks ?? [])].sort((a, b) => {
+        const getDistance = (
+          lat1: number,
+          lon1: number,
+          lat2: number,
+          lon2: number
+        ) => {
+          const toRad = (value: number) => (value * Math.PI) / 180;
+          const R = 6371;
+          const dLat = toRad(lat2 - lat1);
+          const dLon = toRad(lon2 - lon1);
+          const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(toRad(lat1)) *
+              Math.cos(toRad(lat2)) *
+              Math.sin(dLon / 2) *
+              Math.sin(dLon / 2);
+          return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        };
 
-  if (error) return <p>Erro ao carregar os veículos.</p>;
-  if (!data) return <p>Carregando...</p>;
+        return (
+          getDistance(
+            userLocation.latitude,
+            userLocation.longitude,
+            a.coordinates.latitude,
+            a.coordinates.longitude
+          ) -
+          getDistance(
+            userLocation.latitude,
+            userLocation.longitude,
+            b.coordinates.latitude,
+            b.coordinates.longitude
+          )
+        );
+      })
+    : trucks ?? [];
+
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading, setLoading]);
+
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) =>
+          setUserLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          }),
+        () => console.error("Erro ao obter localização do usuário.")
+      );
+    }
+  }, []);
+
+  if (error)
+    return (
+      <Typography variant="body1" color="error">
+        Erro ao carregar os veículos.
+      </Typography>
+    );
 
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
         Listagem de Caminhões
       </Typography>
-      {data.map((vehicle) => (
-        <Card key={vehicle.id} sx={{ mb: 2 }}>
-          <CardContent>
-            <Typography variant="h6">{vehicle.identifier}</Typography>
-            <Typography variant="body2">
-              Placa: {vehicle.license_plate}
-            </Typography>
-            <Typography variant="body2">
-              Rastreador: {vehicle.tracker_serial_number}
-            </Typography>
-          </CardContent>
-        </Card>
-      ))}
+
+      <Map trucks={sortedTrucks} />
+
+      {isLoading && <TruckListSkeleton />}
+
+      {!isLoading && sortedTrucks.length === 0 && (
+        <Typography
+          variant="body1"
+          color="textSecondary"
+          align="center"
+          sx={{ mt: 2 }}
+        >
+          Nenhum caminhão encontrado.
+        </Typography>
+      )}
+
+      {!isLoading && sortedTrucks.length > 0 && (
+        <TruckTable trucks={sortedTrucks} />
+      )}
     </Container>
   );
-}
+};
