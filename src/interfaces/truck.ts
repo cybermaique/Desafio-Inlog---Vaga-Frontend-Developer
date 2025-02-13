@@ -8,3 +8,9 @@ export interface Truck {
     longitude: number;
   };
 }
+
+export interface TruckWithDistance extends Truck {
+  distance: number;
+}
+
+export type NewTruck = Omit<Truck, "id">;
