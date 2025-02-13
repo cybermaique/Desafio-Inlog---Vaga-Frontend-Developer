@@ -1,5 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -103,7 +110,7 @@ const AddTruck = () => {
 
     useEffect(() => {
       if (position && map) {
-        map.setView([position.lat, position.lng], 13);
+        map.setView([position.lat, position.lng], map.getZoom());
       }
     }, [position, map]);
 
@@ -117,7 +124,6 @@ const AddTruck = () => {
 
     return position ? <Marker position={position} icon={truckIcon} /> : null;
   };
-
   useEffect(() => {
     getUserLocation();
   }, []);
@@ -129,92 +135,103 @@ const AddTruck = () => {
           title="Adição de Caminhões"
           subtitle="Cadastre um novo caminhão e sua localização."
         />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Box display="flex" flexDirection="column" gap={2}>
-            <Controller
-              name="identifier"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Identificador *"
-                  error={!!errors.identifier}
-                  helperText={errors.identifier?.message}
-                />
-              )}
-            />
-            <Controller
-              name="license_plate"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Placa *"
-                  error={!!errors.license_plate}
-                  helperText={errors.license_plate?.message}
-                  onChange={(e) => {
-                    const formattedValue = formatLicensePlate(e.target.value);
-                    field.onChange(formattedValue);
-                  }}
-                />
-              )}
-            />
-            <Controller
-              name="tracker_serial_number"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Número de Série do Rastreador *"
-                  error={!!errors.tracker_serial_number}
-                  helperText={errors.tracker_serial_number?.message}
-                />
-              )}
-            />
-            <Typography variant="subtitle1">
-              Selecione a localização no mapa *:
-            </Typography>
+        <Paper
+          elevation={0}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 4.5,
+            padding: 2,
+            borderRadius: 2,
+          }}
+        >
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Box display="flex" flexDirection="column" gap={2}>
+              <Controller
+                name="identifier"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Identificador *"
+                    error={!!errors.identifier}
+                    helperText={errors.identifier?.message}
+                  />
+                )}
+              />
+              <Controller
+                name="license_plate"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Placa *"
+                    error={!!errors.license_plate}
+                    helperText={errors.license_plate?.message}
+                    onChange={(e) => {
+                      const formattedValue = formatLicensePlate(e.target.value);
+                      field.onChange(formattedValue);
+                    }}
+                  />
+                )}
+              />
+              <Controller
+                name="tracker_serial_number"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Número de Série do Rastreador *"
+                    error={!!errors.tracker_serial_number}
+                    helperText={errors.tracker_serial_number?.message}
+                  />
+                )}
+              />
+              <Typography variant="subtitle1">
+                Selecione a localização no mapa *:
+              </Typography>
 
-            <MapContainer
-              center={position || [-25.43247, -49.27845]}
-              zoom={13}
-              style={{ height: 300, width: "100%" }}
-              whenReady={() => {
-                if (mapRef.current) {
-                  mapRef.current.invalidateSize();
-                }
-              }}
-            >
-              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              <LocationMarker />
-            </MapContainer>
-
-            <Typography
-              variant="caption"
-              color={errors.latitude ? "error" : "inherit"}
-            >
-              {errors.latitude
-                ? errors.latitude.message
-                : `Latitude: ${
-                    position?.lat || "Não selecionado"
-                  } | Longitude: ${position?.lng || "Não selecionado"}`}
-            </Typography>
-
-            <Box display="flex" justifyContent="flex-end" gap={2} mt={2}>
-              <Button variant="outlined" onClick={getUserLocation}>
-                Usar minha localização
-              </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                disabled={isMutating}
+              <MapContainer
+                center={position || [-25.43247, -49.27845]}
+                zoom={13}
+                style={{ height: 300, width: "100%" }}
+                whenReady={() => {
+                  if (mapRef.current) {
+                    mapRef.current.invalidateSize();
+                  }
+                }}
               >
-                {isMutating ? "Salvando..." : "Salvar Caminhão"}
-              </Button>
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                <LocationMarker />
+              </MapContainer>
+
+              <Typography
+                variant="caption"
+                color={errors.latitude ? "error" : "inherit"}
+              >
+                {errors.latitude
+                  ? errors.latitude.message
+                  : `Latitude: ${
+                      position?.lat || "Não selecionado"
+                    } | Longitude: ${position?.lng || "Não selecionado"}`}
+              </Typography>
+
+              <Box display="flex" justifyContent="flex-end" gap={2} mt={2}>
+                <Button variant="outlined" onClick={getUserLocation}>
+                  Usar minha localização
+                </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={isMutating}
+                >
+                  {isMutating ? "Salvando..." : "Salvar Caminhão"}
+                </Button>
+              </Box>
             </Box>
-          </Box>
-        </form>
+          </form>
+        </Paper>
       </Box>
     </Container>
   );
