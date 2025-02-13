@@ -1,20 +1,14 @@
-import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { Truck } from "../interfaces/truck";
+import truckIcon from "./truck-icon";
 
 interface MapProps {
-  trucks: Truck[];
-  selectedTruck: Truck | null;
+  readonly trucks: readonly Truck[];
+  readonly selectedTruck: Truck | null;
 }
 
-const truckIcon = new L.Icon({
-  iconUrl: "/location-truck.svg",
-  iconAnchor: [20, 40],
-  popupAnchor: [0, -40],
-});
-
-function FlyToTruck({ selectedTruck }: { selectedTruck: Truck | null }) {
+const FlyToTruck = ({ selectedTruck }: { selectedTruck: Truck | null }) => {
   const map = useMap();
   if (selectedTruck) {
     map.flyTo(
@@ -24,9 +18,9 @@ function FlyToTruck({ selectedTruck }: { selectedTruck: Truck | null }) {
     );
   }
   return null;
-}
+};
 
-export function Map({ trucks, selectedTruck }: MapProps) {
+export const TruckMap = ({ trucks, selectedTruck }: MapProps) => {
   return (
     <MapContainer
       center={[-23.55052, -46.63331]}
@@ -54,4 +48,4 @@ export function Map({ trucks, selectedTruck }: MapProps) {
       ))}
     </MapContainer>
   );
-}
+};
