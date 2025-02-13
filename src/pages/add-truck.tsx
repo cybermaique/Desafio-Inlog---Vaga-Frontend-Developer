@@ -132,7 +132,7 @@ const AddTruck = () => {
     <Container maxWidth={false}>
       <Box display="flex" flexDirection="column" gap={2} mt={2}>
         <PageHeader
-          title="Adição de Caminhões"
+          title="Adicionar Caminhão"
           subtitle="Cadastre um novo caminhão e sua localização."
         />
         <Paper
