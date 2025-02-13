@@ -1,11 +1,7 @@
-const  App = () => {
+import { AppRoutes } from "./routes";
 
-  return (
-      <div>
-      <h1>Desafio-Inlog---Vaga-Frontend-Developer
-      </h1>
-      </div>
-  )
+function App() {
+  return <AppRoutes />;
 }
 
-export default App
+export default App;
