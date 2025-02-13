@@ -18,6 +18,7 @@ import { NewTruck } from "../interfaces/truck";
 import { addTruck } from "../services/post-truck";
 import { useLoadingStore } from "../stores/loading";
 import { useSnackbarStore } from "../stores/snackbar";
+import { formatLicensePlate } from "../utils/truck";
 
 const errorMap: z.ZodErrorMap = () => ({ message: "Campo obrigatório" });
 z.setErrorMap(errorMap);
@@ -74,7 +75,6 @@ const AddTruck = () => {
         latitude: 0,
         longitude: 0,
       });
-      setPosition(null);
     } catch {
       showSnackbar("Erro ao cadastrar caminhão.", "error");
     } finally {
@@ -152,6 +152,10 @@ const AddTruck = () => {
                   label="Placa *"
                   error={!!errors.license_plate}
                   helperText={errors.license_plate?.message}
+                  onChange={(e) => {
+                    const formattedValue = formatLicensePlate(e.target.value);
+                    field.onChange(formattedValue);
+                  }}
                 />
               )}
             />
@@ -168,7 +172,7 @@ const AddTruck = () => {
               )}
             />
             <Typography variant="subtitle1">
-              Selecione a localização no mapa:
+              Selecione a localização no mapa *:
             </Typography>
 
             <MapContainer
