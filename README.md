@@ -1,78 +1,50 @@
-# Desafio Inlog - Vaga Frontend Developer 🚀
+# React + TypeScript + Vite
 
-## Introdução 📜
-O objetivo deste desafio é criar um projeto React que contenha duas páginas: uma para listar veículos e outra para cadastrar novos veículos. 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Na página de listagem de veículos, será necessário utilizar a biblioteca do mapa, como o Leaflet ou Google Maps API, para exibir um mapa com a localização de cada veículo da lista.
+Currently, two official plugins are available:
 
-Além disso, a lista de veículos deve estar ordenada pela localização mais próxima do usuário. Na página de cadastro de veículos, será necessário criar um formulário para inserir as informações básicas e a localização do veículo. 
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-O design do projeto fica à escolha do desenvolvedor do teste. Use sua criatividade e mostre suas habilidades em React, API e testes automatizados neste desafio!
+## Expanding the ESLint configuration
 
-## Instruções 📝
-1. Crie 2 páginas em React: Uma para listagem de veículos e outra página de cadastro de veículos. 🚗📝
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-2. Na página de listagem de veículos, utilize a biblioteca do mapa, como o Leaflet ou Google Maps API para exibir um mapa e colocar um pin em cada localização de veículos na lista. 🗺️
-    - A tela de listagem deve conter uma lista de veículos deve estar ordenada pela localização mais próxima do usuário (web).
-    - Além da listagem, deve conter um mapa com as informações solicitadas.
+- Configure the top-level `parserOptions` property like this:
 
-3. Na página de cadastro de veículos, crie um formulário que permita ao usuário inserir as informações básicas e a localização do veículo.
-   - Exemplo:
-```json
-{
-    identifier: 'Vehicle 1',
-    license_plate: 'AAA-9A99',
-    tracker_serial_number: 'A0000000',
-    coordinates: {
-        latitude: -25.43247,
-        longitude: -49.27845
-    } 
-}
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
-4. Crie teste usando o Jest, React Testing Library ou Cypress para garantir que:
-   - A listagem de veículos seja renderizada corretamente com o mapa. 🧭
-   - O formulário de cadastro de veículos esteja funcionando perfeitamente. ✅
-   - A Fake API esteja respondendo corretamente. 📡
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-## Iniciando o Projeto 🚀
-- Certifique-se de ter o Node.js instalado em sua máquina.
-- Clone este repositório usando o comando git clone https://github.com/weareinlog/Desafio-Inlog---Vaga-Frontend-Developer.
-- Acesse a pasta do projeto usando o comando cd nome-da-pasta.
-- Instale as dependências do projeto usando o comando npm install.
-- Execute o projeto usando o comando npm start.
-- Acesse o projeto em seu navegador através da url http://localhost:3000.
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
 
-#### Observações:🌟
-- Você pode utilizar bibliotecas externas para ajudar no desenvolvimento do projeto, tais como:
-    - Validadores: react-hook-form, yup, formik entre outros.
-    - Componentes: Material-UI, Chakra-ui entre outros.
-    - Rotas: React-router-dom.
-
-- Caso deseje adicionar mais campos para o veículo como uma imagem entre outros, fique à vontade. Isso será visto como bônus. 🏎️💻
-
-#### Mirage JS:
-```json 
-    GET:  /api/vehicles
-    POST: /api/vehicle
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
 ```
-
-## Dicas 💡
-
-- Use componentes funcionais com hooks do React.
-- Utilize TypeScript ou PropTypes para tipagem.
-- Utilize Redux ou outro gerenciador de estado para armazenar as informações dos veículos.
-- Utilize o Axios para fazer requisições à API.
-- Utilize a biblioteca React Leaflet ou Google Maps API para exibir o mapa.
-- Teste todos os componentes criados.
-- Se quiser adicionar algum bônus, como uma busca de veículos ou um filtro de veículos, fique à vontade.
-- Este projeto foi criado utilizando o padrão create-react-app, que oferece uma estrutura básica para a construção de aplicativos React. Você é livre para alterar a arquitetura do projeto conforme achar melhor, adicionando ou removendo bibliotecas e componentes, criando novas pastas e arquivos, e assim por diante. Sinta-se à vontade para personalizar o projeto de acordo com as suas necessidades e preferências.
-
----
-
-## Como entregar 📨
-
-- Crie um fork deste repositório e desenvolva nele.
-- Após finalizar, enviar para o email beinlog@inlog.com.br o link do repositorio do github com seu projeto, além de seus dados de contato.
-
-## Boa sorte!
