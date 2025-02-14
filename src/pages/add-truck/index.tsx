@@ -22,6 +22,9 @@ const AddTruck = () => {
   const { setLoading } = useLoadingStore();
   const [imagePreview, setImagePreview] = useState<string>(DEFAULT_TRUCK_IMAGE);
 
+  // Cenário hipotético para acessar os caminhões do Redux
+  // const trucks = useSelector((state: RootState) => state.trucks.trucks);
+
   const {
     control,
     handleSubmit,

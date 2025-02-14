@@ -1,5 +1,6 @@
 import { Box, Button, Container, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { TruckFilters } from "../../components/list-truck/filters";
 import { TruckTable } from "../../components/list-truck/table";
 import { TruckViewMap } from "../../components/list-truck/truck-view-map";
@@ -15,12 +16,14 @@ import {
 import { useGetTrucks } from "../../services/get-trucks";
 import { useLoadingStore } from "../../stores/loading";
 import { useSnackbarStore } from "../../stores/snackbar";
+import { setTrucks } from "../../stores/truck-slice";
 import {
   downloadTruckReport,
   sortAndFilterTrucks,
 } from "../../utils/list-truck";
 
 const ListTruck = () => {
+  const dispatch = useDispatch();
   const { setLoading } = useLoadingStore();
   const { showSnackbar } = useSnackbarStore();
   const userLocation = useUserLocation();
@@ -75,6 +78,12 @@ const ListTruck = () => {
   useEffect(() => {
     if (error) showSnackbar("Erro ao carregar os veículos.", "error");
   }, [error, showSnackbar]);
+
+  useEffect(() => {
+    if (trucks) {
+      dispatch(setTrucks(trucks));
+    }
+  }, [trucks, dispatch]);
 
   return (
     <Container maxWidth={false} aria-busy={isLoading}>

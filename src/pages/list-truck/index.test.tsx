@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
 import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 import ListTruck from ".";
 import {
@@ -9,6 +10,7 @@ import {
 import { useGetTrucks } from "../../services/get-trucks";
 import { useLoadingStore } from "../../stores/loading";
 import { useSnackbarStore } from "../../stores/snackbar";
+import { store } from "../../stores/store";
 import { getDistance, sortAndFilterTrucks } from "../../utils/list-truck";
 
 vi.mock("../../services/get-trucks");
@@ -111,7 +113,11 @@ describe("ListTruck Component", () => {
   });
 
   it("should render the ListTruck component", () => {
-    render(<ListTruck />);
+    render(
+      <Provider store={store}>
+        <ListTruck />
+      </Provider>
+    );
     expect(screen.getByText("Listagem de Caminhões")).toBeInTheDocument();
     expect(
       screen.getByText(
@@ -121,7 +127,11 @@ describe("ListTruck Component", () => {
   });
 
   it("should sort trucks by distance in ascending order", () => {
-    render(<ListTruck />);
+    render(
+      <Provider store={store}>
+        <ListTruck />
+      </Provider>
+    );
 
     const sortedTrucks = sortAndFilterTrucks(
       mockTrucks,
@@ -136,7 +146,11 @@ describe("ListTruck Component", () => {
   });
 
   it("should sort trucks by distance in descending order", () => {
-    render(<ListTruck />);
+    render(
+      <Provider store={store}>
+        <ListTruck />
+      </Provider>
+    );
 
     const sortedTrucks = sortAndFilterTrucks(
       mockTrucks,
