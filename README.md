@@ -126,7 +126,7 @@ Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Fron
 
 ## Observações ⚠️
 
-- **Uso do Redux**: Embora o Redux tenha sido utilizado no projeto para gerenciar o estado global dos caminhões após as requisições à API, esse gerenciamento não é essencial para a aplicação. O Redux foi implementado como parte do desafio técnico, mas sua utilização pode ser vista mais como um teste de integração e uma oportunidade de aprender e aplicar o Redux em um projeto real.
+- **Uso do Redux**: Embora o Redux tenha sido utilizado no projeto para gerenciar o estado global dos caminhões após as requisições à API, esse gerenciamento não é essencial para a aplicação. O Redux foi implementado como parte do desafio técnico, mas sua utilização pode ser vista mais como um teste e um extra, pois não achei necessário a utilização completo do mesmo devido ao tamanho atual do projeto.
 - **Gerenciamento do Estado Global**: Para gerenciar o estado global do snackbar e do loading, foi utilizado o **Zustand**, que proporciona uma abordagem mais leve e eficiente para esses casos de uso, sendo uma solução mais adequada e simples para o gerenciamento de estados localizados na aplicação.
 
 ---
