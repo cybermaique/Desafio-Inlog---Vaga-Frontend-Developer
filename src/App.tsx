@@ -1,10 +1,10 @@
 import { Alert, CssBaseline, Snackbar, ThemeProvider } from "@mui/material";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SWRConfig } from "swr";
 import { fetcher } from "./api/fetcher";
-import Layout from "./components/layout.tsx";
-import { Loader } from "./components/loader.tsx";
-import AppRoutes from "./routes/app-routes.tsx";
+import Layout from "./components/layout/index.tsx";
+import { Loader } from "./components/loader/index.tsx";
+import { routes } from "./routes/index.tsx";
 import { useSnackbarStore } from "./stores/snackbar.ts";
 import theme from "./styles/theme.ts";
 
@@ -28,7 +28,7 @@ const App = () => {
           <Snackbar
             open={open}
             autoHideDuration={3000}
-            onClose={(event, reason) => {
+            onClose={(_event, reason) => {
               if (reason !== "clickaway") {
                 closeSnackbar();
               }
@@ -40,7 +40,11 @@ const App = () => {
           </Snackbar>
 
           <Layout>
-            <AppRoutes />
+            <Routes>
+              {routes.map(({ path, element }) => (
+                <Route key={path} path={path} element={element} />
+              ))}
+            </Routes>
           </Layout>
         </BrowserRouter>
       </SWRConfig>

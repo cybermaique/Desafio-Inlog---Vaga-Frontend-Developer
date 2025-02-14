@@ -1,7 +1,6 @@
-sonar.projectKey=vehicle-tracker
+sonar.projectKey=PROJECT_KEY
 sonar.host.url=http://localhost:9000
-sonar.projectName=SEU_PROJETO
-sonar.token=SEU_TOKEN
+sonar.token=TOKEN
 sonar.language=ts
 sonar.sources=src
 sonar.exclusions=**/*.test.tsx, **/*.test.ts, **/node_modules/**, **/dist/**
