@@ -1,8 +1,9 @@
 import { HomeOutlined, LocalShipping } from "@mui/icons-material";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import AddTruck from "../pages/add-truck";
+import AddTruck from "../pages/add-truck/index";
 import Home from "../pages/home";
-import TruckList from "../pages/truck-list";
+import ListTruck from "../pages/list-truck";
+import NotFound from "../pages/not-found";
 
 export const routes = [
   {
@@ -15,12 +16,17 @@ export const routes = [
     path: "/caminhoes/listar",
     title: "Listagem de Caminhões",
     icon: <LocalShipping />,
-    element: <TruckList />,
+    element: <ListTruck />,
   },
   {
-    path: "/caminhoes/adicionar",
-    title: "Adicionar Caminhão",
+    path: "/caminhoes/cadastrar",
+    title: "Cadastrar Caminhão",
     icon: <AddRoundedIcon />,
     element: <AddTruck />,
+  },
+  {
+    path: "*",
+    title: "Página Não Encontrada",
+    element: <NotFound />,
   },
 ];

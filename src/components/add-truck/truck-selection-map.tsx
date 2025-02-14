@@ -6,7 +6,7 @@ import {
   useMap,
   useMapEvents,
 } from "react-leaflet";
-import truckIcon from "../icon";
+import truckIcon from "../../utils/map/truck-icon";
 
 interface TruckMapProps {
   position: { lat: number; lng: number } | null;

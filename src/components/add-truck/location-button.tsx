@@ -22,7 +22,7 @@ const LocationButton = ({ setPosition, setValue }: LocationButtonProps) => {
   };
 
   return (
-    <Button variant="outlined" onClick={getUserLocation}>
+    <Button variant="outlined" onClick={getUserLocation} size="large">
       Usar minha localização
     </Button>
   );

@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
-import { formatLicensePlate } from "../../utils/truck";
+import { formatLicensePlate } from "../../utils/list-truck";
 
 interface TruckFormFieldProps {
   name: string;
@@ -8,6 +8,7 @@ interface TruckFormFieldProps {
   control: any;
   errors: any;
   isLicensePlate?: boolean;
+  maxLength?: number;
 }
 
 const TruckFormField = ({
@@ -16,6 +17,7 @@ const TruckFormField = ({
   control,
   errors,
   isLicensePlate,
+  maxLength,
 }: TruckFormFieldProps) => {
   return (
     <Controller
@@ -32,6 +34,11 @@ const TruckFormField = ({
               ? formatLicensePlate(e.target.value)
               : e.target.value;
             field.onChange(value);
+          }}
+          slotProps={{
+            htmlInput: {
+              maxLength,
+            },
           }}
         />
       )}
