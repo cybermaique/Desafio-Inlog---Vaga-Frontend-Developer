@@ -1,5 +1,5 @@
 import { Box, Button, TextField } from "@mui/material";
-import { formatLicensePlate } from "../../utils/truck";
+import { formatLicensePlate } from "../../utils/list-truck";
 
 interface TruckFiltersProps {
   filters: {
@@ -36,11 +36,10 @@ export const TruckFilters = ({
       setFilters({ ...filters, [field]: value });
     };
 
-  // Verifica se TODOS os filtros estão vazios
   const isFilterEmpty =
-    !filters.licensePlate.trim() &&
-    !filters.trackerSerialNumber.trim() &&
-    !filters.maxDistance.trim();
+    !(filters.licensePlate?.trim() ?? "") &&
+    !(filters.trackerSerialNumber?.trim() ?? "") &&
+    !(filters.maxDistance?.trim() ?? "");
 
   return (
     <Box display="flex" justifyContent="space-between">
@@ -73,7 +72,7 @@ export const TruckFilters = ({
           variant="outlined"
           onClick={onClear}
           size="large"
-          disabled={isFilterEmpty} // Desabilita se os filtros estiverem vazios
+          disabled={isFilterEmpty}
         >
           Limpar
         </Button>
@@ -82,7 +81,7 @@ export const TruckFilters = ({
           color="primary"
           onClick={onSearch}
           size="large"
-          disabled={isFilterEmpty} // Desabilita se os filtros estiverem vazios
+          disabled={isFilterEmpty}
         >
           Buscar
         </Button>

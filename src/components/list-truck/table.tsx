@@ -14,10 +14,14 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { PAGE_SIZE_OPTIONS, TRUCK_TABLE_COLUMNS } from "../../constants/table";
+import {
+  DEFAULT_TRUCK_IMAGE,
+  PAGE_SIZE_OPTIONS,
+  TRUCK_TABLE_COLUMNS,
+} from "../../constants/table";
 import { Truck, TruckWithDistance } from "../../interfaces/truck";
 import { colors } from "../../styles/colors";
-import { getTruckCellValue } from "../../utils/truck";
+import { getTruckCellValue } from "../../utils/list-truck";
 import { CustomActionsComponent } from "./custom-actions-component";
 
 interface TruckTableProps {
@@ -51,7 +55,7 @@ export const TruckTable = ({
       component={Paper}
       sx={{ mt: 2, borderTop: `1px solid ${colors.chineseWhite}` }}
     >
-      <Table>
+      <Table data-testid="truck-table">
         <TableHead>
           <TableRow>
             {TRUCK_TABLE_COLUMNS.map((column) => (
@@ -99,7 +103,16 @@ export const TruckTable = ({
               >
                 {TRUCK_TABLE_COLUMNS.map((column) => (
                   <TableCell key={column.key}>
-                    {getTruckCellValue(truck, column.key)}
+                    {column.key === "image" ? (
+                      <img
+                        src={truck.image || DEFAULT_TRUCK_IMAGE}
+                        alt="Caminhão"
+                        width={70}
+                        height={50}
+                      />
+                    ) : (
+                      getTruckCellValue(truck, column.key)
+                    )}
                   </TableCell>
                 ))}
               </TableRow>
