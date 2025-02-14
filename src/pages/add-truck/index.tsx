@@ -16,6 +16,7 @@ import { useLoadingStore } from "../../stores/loading";
 import { useSnackbarStore } from "../../stores/snackbar";
 import { convertFileToBase64 } from "../../utils/add-truck";
 import truckSchema from "../../validation/truck-schema";
+import { PAPER_STYLES } from "./../../constants/styles";
 
 const AddTruck = () => {
   const showSnackbar = useSnackbarStore((state) => state.showSnackbar);
@@ -98,19 +99,9 @@ const AddTruck = () => {
           title="Cadastrar Caminhão"
           subtitle="Cadastre um novo caminhão e sua localização."
         />
-        <Paper
-          elevation={0}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 4.5,
-            padding: 2,
-            borderRadius: 2,
-          }}
-        >
+        <Paper elevation={0} sx={{ PAPER_STYLES }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box display="flex" gap={4} alignItems="center">
-              {/* Foto do caminhão + Botão de Upload */}
               <Box
                 display="flex"
                 flexDirection="column"
@@ -152,7 +143,6 @@ const AddTruck = () => {
                 )}
               </Box>
 
-              {/* Inputs ao lado direito */}
               <Box display="flex" flexDirection="column" gap={2} flex={1}>
                 <TruckFormField
                   name="identifier"

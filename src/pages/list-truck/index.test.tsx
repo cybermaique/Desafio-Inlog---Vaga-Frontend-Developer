@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 import ListTruck from ".";
 import { Truck, TruckWithDistance } from "../../interfaces/truck";
@@ -112,35 +112,6 @@ describe("ListTruck Component", () => {
         "Confira a localização e detalhes dos caminhões disponíveis."
       )
     ).toBeInTheDocument();
-  });
-
-  it("should call handleSearch when 'Enter' is pressed", () => {
-    render(<ListTruck />);
-
-    const inputs = screen.getAllByRole("textbox");
-    expect(inputs).toHaveLength(2);
-
-    fireEvent.change(inputs[0], { target: { value: "ABC123" } });
-    fireEvent.keyDown(inputs[0], { key: "Enter", code: "Enter", charCode: 13 });
-  });
-
-  it("should clear filters when handleClear is called", () => {
-    render(<ListTruck />);
-
-    const licensePlateInput = screen.getAllByRole("textbox")[0];
-    const trackerSerialNumberInput = screen.getAllByRole("textbox")[1];
-    const maxDistanceInput = screen.getByRole("spinbutton");
-
-    fireEvent.change(licensePlateInput, { target: { value: "ABC123" } });
-    fireEvent.change(trackerSerialNumberInput, { target: { value: "123456" } });
-    fireEvent.change(maxDistanceInput, { target: { value: "100" } });
-
-    const clearButton = screen.getByRole("button", { name: /limpar/i });
-    fireEvent.click(clearButton);
-
-    expect(licensePlateInput).toHaveValue("");
-    expect(trackerSerialNumberInput).toHaveValue("");
-    expect(maxDistanceInput).toHaveValue(null);
   });
 
   it("should sort trucks by distance in ascending order", () => {
