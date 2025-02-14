@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import "leaflet/dist/leaflet.css";
 import { describe, expect, it, vi } from "vitest";
-import { Truck } from "../../interfaces/truck";
+import { TruckNormalized } from "../../interfaces/truck-normalized";
 import { TruckViewMap } from "./truck-view-map";
 
 vi.mock("react-leaflet", () => ({
@@ -19,7 +19,7 @@ vi.mock("react-leaflet", () => ({
   useMap: () => ({ flyTo: vi.fn() }),
 }));
 
-const mockTrucks: Truck[] = [
+const mockTrucks: TruckNormalized[] = [
   {
     id: "1",
     identifier: "Truck A",
@@ -27,6 +27,7 @@ const mockTrucks: Truck[] = [
     tracker_serial_number: "123456",
     coordinates: { latitude: -23.55, longitude: -46.63 },
     image: "",
+    start_date: "2023-01-01T00:00:00Z",
   },
 ];
 

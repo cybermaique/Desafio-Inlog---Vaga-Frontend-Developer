@@ -1,11 +1,16 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
 import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 import ListTruck from ".";
-import { Truck, TruckWithDistance } from "../../interfaces/truck";
+import {
+  TruckNormalized,
+  TruckWithDistance,
+} from "../../interfaces/truck-normalized";
 import { useGetTrucks } from "../../services/get-trucks";
 import { useLoadingStore } from "../../stores/loading";
 import { useSnackbarStore } from "../../stores/snackbar";
+import { store } from "../../stores/store";
 import { getDistance, sortAndFilterTrucks } from "../../utils/list-truck";
 
 vi.mock("../../services/get-trucks");
@@ -20,7 +25,7 @@ vi.mock("../../utils/list-truck", () => ({
 }));
 
 describe("ListTruck Component", () => {
-  const mockTrucks: Truck[] = [
+  const mockTrucks: TruckNormalized[] = [
     {
       id: "1",
       identifier: "1",
@@ -28,6 +33,7 @@ describe("ListTruck Component", () => {
       tracker_serial_number: "123456",
       coordinates: { latitude: -23.55052, longitude: -46.633308 },
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     },
     {
       id: "2",
@@ -36,6 +42,7 @@ describe("ListTruck Component", () => {
       tracker_serial_number: "654321",
       coordinates: { latitude: -23.551, longitude: -46.634 },
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     },
     {
       id: "3",
@@ -44,6 +51,7 @@ describe("ListTruck Component", () => {
       tracker_serial_number: "987654",
       coordinates: { latitude: -23.552, longitude: -46.635 },
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     },
   ];
 
@@ -105,7 +113,11 @@ describe("ListTruck Component", () => {
   });
 
   it("should render the ListTruck component", () => {
-    render(<ListTruck />);
+    render(
+      <Provider store={store}>
+        <ListTruck />
+      </Provider>
+    );
     expect(screen.getByText("Listagem de Caminhões")).toBeInTheDocument();
     expect(
       screen.getByText(
@@ -115,7 +127,11 @@ describe("ListTruck Component", () => {
   });
 
   it("should sort trucks by distance in ascending order", () => {
-    render(<ListTruck />);
+    render(
+      <Provider store={store}>
+        <ListTruck />
+      </Provider>
+    );
 
     const sortedTrucks = sortAndFilterTrucks(
       mockTrucks,
@@ -130,7 +146,11 @@ describe("ListTruck Component", () => {
   });
 
   it("should sort trucks by distance in descending order", () => {
-    render(<ListTruck />);
+    render(
+      <Provider store={store}>
+        <ListTruck />
+      </Provider>
+    );
 
     const sortedTrucks = sortAndFilterTrucks(
       mockTrucks,

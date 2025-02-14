@@ -10,7 +10,7 @@ import TruckSelectionMap from "../../components/add-truck/truck-selection-map";
 import PageHeader from "../../components/page-header";
 import { DEFAULT_TRUCK_IMAGE } from "../../constants/table";
 import useUserLocation from "../../hooks/use-user-location";
-import { NewTruck } from "../../interfaces/truck";
+import { NewTruck } from "../../interfaces/truck-normalized";
 import { addTruck } from "../../services/post-truck";
 import { useLoadingStore } from "../../stores/loading";
 import { useSnackbarStore } from "../../stores/snackbar";
@@ -21,6 +21,9 @@ const AddTruck = () => {
   const showSnackbar = useSnackbarStore((state) => state.showSnackbar);
   const { setLoading } = useLoadingStore();
   const [imagePreview, setImagePreview] = useState<string>(DEFAULT_TRUCK_IMAGE);
+
+  // Cenário hipotético para acessar os caminhões do Redux
+  // const trucks = useSelector((state: RootState) => state.trucks.trucks);
 
   const {
     control,
@@ -48,6 +51,7 @@ const AddTruck = () => {
         latitude: data.latitude,
         longitude: data.longitude,
       },
+      start_date: new Date().toISOString(),
     };
 
     try {

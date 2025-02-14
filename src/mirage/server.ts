@@ -16,6 +16,7 @@ export function makeServer() {
           tracker_serial_number: `T${truck.id}${truck.id}${truck.id}${truck.id}${truck.id}`,
           coordinates: { latitude: truck.lat, longitude: truck.lon },
           image: truck.image,
+          start_date: truck.start_date,
         });
       });
     },

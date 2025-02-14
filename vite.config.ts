@@ -18,7 +18,7 @@ export default defineConfig({
       "src/main.tsx",
       "src/App.tsx",
       "src/assets/**",
-      "src/test/**",
+      "src/auth/**",
     ],
     coverage: {
       include: ["src/**/*.{ts,tsx}"],
@@ -33,7 +33,7 @@ export default defineConfig({
         "src/main.tsx",
         "src/App.tsx",
         "src/assets/**",
-        "src/test/**",
+        "src/auth/**", // Ignorando a pasta auth porque ainda não foi implementada.
       ],
     },
   },

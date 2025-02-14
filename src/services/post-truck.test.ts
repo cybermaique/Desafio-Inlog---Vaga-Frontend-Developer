@@ -27,6 +27,7 @@ describe("addTruck", () => {
       tracker_serial_number: "ABC456",
       coordinates: { latitude: 0, longitude: 0 },
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     };
 
     const result = await addTruck(url, { arg: newTruck });
@@ -52,6 +53,7 @@ describe("addTruck", () => {
       tracker_serial_number: "ABC456",
       coordinates: { latitude: 0, longitude: 0 },
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     };
 
     await expect(addTruck(url, { arg: newTruck })).rejects.toThrowError(
