@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { Truck, TruckWithDistance } from "../interfaces/truck";
+import {
+  TruckNormalized,
+  TruckWithDistance,
+} from "../interfaces/truck-normalized";
 import {
   formatLicensePlate,
   getDistance,
@@ -19,6 +22,7 @@ describe("Truck Utility Functions", () => {
     license_plate: "ABC1234",
     tracker_serial_number: "12345ABC",
     image: "",
+    start_date: "2023-01-01T00:00:00Z",
   };
 
   it("should return the correctly formatted distance", () => {
@@ -101,7 +105,7 @@ describe("Truck Utility Functions", () => {
     expect(distance).toBeCloseTo(5837.24, 2);
   });
 
-  const trucks: Truck[] = [
+  const trucks: TruckNormalized[] = [
     {
       id: "1",
       identifier: "1",
@@ -109,6 +113,7 @@ describe("Truck Utility Functions", () => {
       license_plate: "ABC1234",
       tracker_serial_number: "12345ABC",
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     },
     {
       id: "2",
@@ -117,6 +122,7 @@ describe("Truck Utility Functions", () => {
       license_plate: "XYZ5678",
       tracker_serial_number: "67890XYZ",
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     },
     {
       id: "3",
@@ -125,6 +131,7 @@ describe("Truck Utility Functions", () => {
       license_plate: "DEF9012",
       tracker_serial_number: "11223DEF",
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     },
   ];
 

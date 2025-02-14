@@ -1,4 +1,10 @@
-import { Truck, TruckWithDistance } from "../interfaces/truck";
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
+import {
+  TruckNormalized,
+  TruckWithDistance,
+} from "../interfaces/truck-normalized";
+import { formatDate } from "./date";
 
 export const getTruckCellValue = (
   truck: TruckWithDistance,
@@ -50,7 +56,7 @@ export const getDistance = (
 };
 
 export const sortAndFilterTrucks = (
-  trucks: Truck[],
+  trucks: TruckNormalized[],
   appliedFilters: any,
   isDistanceDescending: boolean,
   userLocation: { latitude: number; longitude: number }
@@ -87,4 +93,29 @@ export const sortAndFilterTrucks = (
           .includes(appliedFilters.trackerSerialNumber.toLowerCase())) &&
       truck.distance <= maxDistance
   );
+};
+
+export const downloadTruckReport = (filteredTrucks: TruckWithDistance[]) => {
+  const doc = new jsPDF();
+
+  const columns = [
+    "Identificador",
+    "Placa",
+    "Rastreador",
+    "Distância (km)",
+    "Data de início",
+  ];
+  const rows = filteredTrucks.map((truck) => [
+    truck.identifier,
+    truck.license_plate,
+    truck.tracker_serial_number,
+    truck.distance.toFixed(2),
+    formatDate(truck.start_date),
+  ]);
+
+  autoTable(doc, {
+    head: [columns],
+    body: rows,
+  });
+  doc.save("relatorio-caminhoes.pdf");
 };

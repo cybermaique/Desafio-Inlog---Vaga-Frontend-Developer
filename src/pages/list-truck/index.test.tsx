@@ -2,7 +2,10 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 import ListTruck from ".";
-import { Truck, TruckWithDistance } from "../../interfaces/truck";
+import {
+  TruckNormalized,
+  TruckWithDistance,
+} from "../../interfaces/truck-normalized";
 import { useGetTrucks } from "../../services/get-trucks";
 import { useLoadingStore } from "../../stores/loading";
 import { useSnackbarStore } from "../../stores/snackbar";
@@ -20,7 +23,7 @@ vi.mock("../../utils/list-truck", () => ({
 }));
 
 describe("ListTruck Component", () => {
-  const mockTrucks: Truck[] = [
+  const mockTrucks: TruckNormalized[] = [
     {
       id: "1",
       identifier: "1",
@@ -28,6 +31,7 @@ describe("ListTruck Component", () => {
       tracker_serial_number: "123456",
       coordinates: { latitude: -23.55052, longitude: -46.633308 },
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     },
     {
       id: "2",
@@ -36,6 +40,7 @@ describe("ListTruck Component", () => {
       tracker_serial_number: "654321",
       coordinates: { latitude: -23.551, longitude: -46.634 },
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     },
     {
       id: "3",
@@ -44,6 +49,7 @@ describe("ListTruck Component", () => {
       tracker_serial_number: "987654",
       coordinates: { latitude: -23.552, longitude: -46.635 },
       image: "",
+      start_date: "2023-01-01T00:00:00Z",
     },
   ];
 
