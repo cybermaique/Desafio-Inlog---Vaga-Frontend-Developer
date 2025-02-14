@@ -1,7 +1,7 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import { Truck } from "../interfaces/truck";
-import truckIcon from "./truck-icon";
+import { Truck } from "../../interfaces/truck";
+import truckIcon from "../../utils/map/truck-icon";
 
 interface MapProps {
   readonly trucks: readonly Truck[];
@@ -20,7 +20,7 @@ const FlyToTruck = ({ selectedTruck }: { selectedTruck: Truck | null }) => {
   return null;
 };
 
-export const TruckMap = ({ trucks, selectedTruck }: MapProps) => {
+export const TruckViewMap = ({ trucks, selectedTruck }: MapProps) => {
   return (
     <MapContainer
       center={[-23.55052, -46.63331]}
