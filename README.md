@@ -24,6 +24,22 @@ Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Fron
 
 ![alt text](register-trucks.png)
 
+### GIF Sidebar, Toolbar e Home
+
+![alt text](inicio.gif)
+
+### GIF Listagem
+
+![alt text](listagem.gif)
+
+### GIF Cadastro
+
+![alt text](cadastro.gif)
+
+### GIF Exportar Relatório
+
+![alt text](relatorio.gif)
+
 ---
 
 ## Funcionalidades ✨
