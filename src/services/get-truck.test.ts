@@ -20,6 +20,7 @@ describe("useGetTrucks", () => {
           latitude: -23.55052,
           longitude: -46.633308,
         },
+        image: "",
       },
     ];
     (useSWR as Mock).mockReturnValue({ data: trucksMock, error: null });

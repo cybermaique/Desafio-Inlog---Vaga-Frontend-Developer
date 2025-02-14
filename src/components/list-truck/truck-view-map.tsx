@@ -1,14 +1,18 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import { Truck } from "../../interfaces/truck";
+import { TruckNormalized } from "../../interfaces/truck-normalized";
 import truckIcon from "../../utils/map/truck-icon";
 
 interface MapProps {
-  readonly trucks: readonly Truck[];
-  readonly selectedTruck: Truck | null;
+  readonly trucks: readonly TruckNormalized[];
+  readonly selectedTruck: TruckNormalized | null;
 }
 
-const FlyToTruck = ({ selectedTruck }: { selectedTruck: Truck | null }) => {
+const FlyToTruck = ({
+  selectedTruck,
+}: {
+  selectedTruck: TruckNormalized | null;
+}) => {
   const map = useMap();
   if (selectedTruck) {
     map.flyTo(

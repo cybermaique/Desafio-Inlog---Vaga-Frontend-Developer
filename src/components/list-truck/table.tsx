@@ -19,15 +19,19 @@ import {
   PAGE_SIZE_OPTIONS,
   TRUCK_TABLE_COLUMNS,
 } from "../../constants/table";
-import { Truck, TruckWithDistance } from "../../interfaces/truck";
+import {
+  TruckNormalized,
+  TruckWithDistance,
+} from "../../interfaces/truck-normalized";
 import { colors } from "../../styles/colors";
+import { formatDate } from "../../utils/date";
 import { getTruckCellValue } from "../../utils/list-truck";
 import { CustomActionsComponent } from "./custom-actions-component";
 
 interface TruckTableProps {
   trucks: TruckWithDistance[];
-  selectedTruck: Truck | null;
-  setSelectedTruck: (truck: Truck | null) => void;
+  selectedTruck: TruckNormalized | null;
+  setSelectedTruck: (truck: TruckNormalized | null) => void;
   setIsDistanceDescending: (prev: boolean) => void;
   isDistanceDescending: boolean;
 }
@@ -103,7 +107,9 @@ export const TruckTable = ({
               >
                 {TRUCK_TABLE_COLUMNS.map((column) => (
                   <TableCell key={column.key}>
-                    {column.key === "image" ? (
+                    {column.key === "start_date" ? (
+                      formatDate(truck.start_date)
+                    ) : column.key === "image" ? (
                       <img
                         src={truck.image || DEFAULT_TRUCK_IMAGE}
                         alt="Caminhão"

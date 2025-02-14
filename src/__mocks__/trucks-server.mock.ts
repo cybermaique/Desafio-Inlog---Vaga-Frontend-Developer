@@ -1,4 +1,6 @@
-export const TRUCKS_SERVER = [
+import { TruckApiResponse } from "../interfaces/truck-api-response";
+
+export const TRUCKS_SERVER: TruckApiResponse[] = [
   {
     id: "1",
     uf: "AC",
@@ -7,6 +9,7 @@ export const TRUCKS_SERVER = [
     lon: -67.8243,
     plate: "ABC-1234",
     image: "",
+    start_date: "2025-01-01T12:00:00Z",
   },
   {
     id: "2",
@@ -16,6 +19,7 @@ export const TRUCKS_SERVER = [
     lon: -35.735,
     plate: "DEF2G34",
     image: "",
+    start_date: "2025-02-01T12:00:00Z",
   },
   {
     id: "3",
@@ -25,6 +29,7 @@ export const TRUCKS_SERVER = [
     lon: -51.0694,
     plate: "HIJ3K45",
     image: "",
+    start_date: "2025-03-01T12:00:00Z",
   },
   {
     id: "4",
@@ -34,6 +39,7 @@ export const TRUCKS_SERVER = [
     lon: -60.0217,
     plate: "LMN4L56",
     image: "",
+    start_date: "2025-04-01T12:00:00Z",
   },
   {
     id: "5",
@@ -43,6 +49,7 @@ export const TRUCKS_SERVER = [
     lon: -38.5014,
     plate: "OPQ5M67",
     image: "",
+    start_date: "2025-05-01T12:00:00Z",
   },
   {
     id: "6",
@@ -52,6 +59,7 @@ export const TRUCKS_SERVER = [
     lon: -38.5431,
     plate: "RST6N78",
     image: "",
+    start_date: "2025-06-01T12:00:00Z",
   },
   {
     id: "7",
@@ -61,6 +69,7 @@ export const TRUCKS_SERVER = [
     lon: -47.9292,
     plate: "UVW7O89",
     image: "",
+    start_date: "2025-07-01T12:00:00Z",
   },
   {
     id: "8",
@@ -70,6 +79,7 @@ export const TRUCKS_SERVER = [
     lon: -40.3128,
     plate: "XYZ8P90",
     image: "",
+    start_date: "2025-08-01T12:00:00Z",
   },
   {
     id: "9",
@@ -79,6 +89,7 @@ export const TRUCKS_SERVER = [
     lon: -49.253,
     plate: "ABC9Q12",
     image: "",
+    start_date: "2025-09-01T12:00:00Z",
   },
   {
     id: "10",
@@ -88,6 +99,7 @@ export const TRUCKS_SERVER = [
     lon: -44.3028,
     plate: "DEF0R23",
     image: "",
+    start_date: "2025-10-01T12:00:00Z",
   },
   {
     id: "11",
@@ -97,6 +109,7 @@ export const TRUCKS_SERVER = [
     lon: -56.0949,
     plate: "HIJ1S34",
     image: "",
+    start_date: "2025-11-01T12:00:00Z",
   },
   {
     id: "12",
@@ -106,6 +119,7 @@ export const TRUCKS_SERVER = [
     lon: -54.6464,
     plate: "LMN2T45",
     image: "",
+    start_date: "2025-12-01T12:00:00Z",
   },
   {
     id: "13",
@@ -115,6 +129,7 @@ export const TRUCKS_SERVER = [
     lon: -43.9345,
     plate: "OPQ3U56",
     image: "",
+    start_date: "2025-01-15T12:00:00Z",
   },
   {
     id: "14",
@@ -124,6 +139,7 @@ export const TRUCKS_SERVER = [
     lon: -48.5024,
     plate: "RST4V67",
     image: "",
+    start_date: "2025-02-15T12:00:00Z",
   },
   {
     id: "15",
@@ -133,6 +149,7 @@ export const TRUCKS_SERVER = [
     lon: -34.8641,
     plate: "UVW5W78",
     image: "",
+    start_date: "2025-03-15T12:00:00Z",
   },
   {
     id: "16",
@@ -142,6 +159,7 @@ export const TRUCKS_SERVER = [
     lon: -49.2733,
     plate: "XYZ6X89",
     image: "",
+    start_date: "2025-04-15T12:00:00Z",
   },
   {
     id: "17",
@@ -151,6 +169,7 @@ export const TRUCKS_SERVER = [
     lon: -34.877,
     plate: "ABC7Y90",
     image: "",
+    start_date: "2025-05-15T12:00:00Z",
   },
   {
     id: "18",
@@ -160,6 +179,7 @@ export const TRUCKS_SERVER = [
     lon: -42.8016,
     plate: "DEF8Z12",
     image: "",
+    start_date: "2025-06-15T12:00:00Z",
   },
   {
     id: "19",
@@ -169,6 +189,7 @@ export const TRUCKS_SERVER = [
     lon: -43.1729,
     plate: "HIJ9A23",
     image: "",
+    start_date: "2025-07-15T12:00:00Z",
   },
   {
     id: "20",
@@ -178,6 +199,7 @@ export const TRUCKS_SERVER = [
     lon: -35.2096,
     plate: "LMN0B34",
     image: "",
+    start_date: "2025-08-15T12:00:00Z",
   },
   {
     id: "21",
@@ -187,6 +209,7 @@ export const TRUCKS_SERVER = [
     lon: -51.2177,
     plate: "OPQ1C45",
     image: "",
+    start_date: "2025-09-15T12:00:00Z",
   },
   {
     id: "22",
@@ -196,6 +219,7 @@ export const TRUCKS_SERVER = [
     lon: -63.9039,
     plate: "RST2D56",
     image: "",
+    start_date: "2025-10-15T12:00:00Z",
   },
   {
     id: "23",
@@ -205,6 +229,7 @@ export const TRUCKS_SERVER = [
     lon: -60.6753,
     plate: "UVW3E67",
     image: "",
+    start_date: "2025-11-15T12:00:00Z",
   },
   {
     id: "24",
@@ -214,6 +239,7 @@ export const TRUCKS_SERVER = [
     lon: -48.548,
     plate: "XYZ4F78",
     image: "",
+    start_date: "2025-12-15T12:00:00Z",
   },
   {
     id: "25",
@@ -223,6 +249,7 @@ export const TRUCKS_SERVER = [
     lon: -46.63331,
     plate: "ABC5G89",
     image: "",
+    start_date: "2025-01-30T12:00:00Z",
   },
   {
     id: "26",
@@ -232,6 +259,7 @@ export const TRUCKS_SERVER = [
     lon: -37.0731,
     plate: "DEF6H90",
     image: "",
+    start_date: "2025-02-28T12:00:00Z",
   },
   {
     id: "27",
@@ -241,5 +269,6 @@ export const TRUCKS_SERVER = [
     lon: -48.3336,
     plate: "HIJ7I12",
     image: "",
+    start_date: "2025-03-30T12:00:00Z",
   },
 ];

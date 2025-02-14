@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 import { TRUCK_TABLE_COLUMNS } from "../../constants/table";
-import { TruckWithDistance } from "../../interfaces/truck";
+import { TruckWithDistance } from "../../interfaces/truck-normalized";
 import { TruckTable } from "./table";
 
 const mockTrucks: TruckWithDistance[] = [
@@ -14,6 +14,7 @@ const mockTrucks: TruckWithDistance[] = [
     coordinates: { latitude: 10, longitude: 20 },
     distance: 100,
     image: "",
+    start_date: "2023-01-01T00:00:00Z",
   },
   {
     id: "2",
@@ -23,6 +24,7 @@ const mockTrucks: TruckWithDistance[] = [
     coordinates: { latitude: 30, longitude: 40 },
     distance: 200,
     image: "",
+    start_date: "2023-01-01T00:00:00Z",
   },
   {
     id: "3",
@@ -32,6 +34,7 @@ const mockTrucks: TruckWithDistance[] = [
     coordinates: { latitude: 50, longitude: 60 },
     distance: 300,
     image: "",
+    start_date: "2023-01-01T00:00:00Z",
   },
   {
     id: "4",
@@ -41,6 +44,7 @@ const mockTrucks: TruckWithDistance[] = [
     coordinates: { latitude: 70, longitude: 80 },
     distance: 400,
     image: "",
+    start_date: "2023-01-01T00:00:00Z",
   },
   {
     id: "5",
@@ -50,6 +54,7 @@ const mockTrucks: TruckWithDistance[] = [
     coordinates: { latitude: 90, longitude: 100 },
     distance: 500,
     image: "",
+    start_date: "2023-01-01T00:00:00Z",
   },
 ];
 
