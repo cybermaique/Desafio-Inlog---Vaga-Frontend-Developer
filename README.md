@@ -14,11 +14,11 @@ Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Fron
 
 ### Home
 
-![alt text](home.png)
+![alt text](home-image.png)
 
 ### Listagem de Caminhões
 
-![alt text](list-trucks.png)
+![alt text](trucks-list.png)
 
 ### Cadastro de Veículos
 
