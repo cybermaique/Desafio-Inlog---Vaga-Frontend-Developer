@@ -42,34 +42,45 @@ Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Fron
 
 ---
 
+## Coverage 🧪
+
+![alt text](tests-coverage.png)
+
+---
+
 ## Funcionalidades ✨
 
 - **Listagem de Veículos**:
   - Lista de veículos ordenada pela proximidade do usuário.
   - Mapa interativo com pins indicando a localização de cada veículo.
+  - Ao clicar em uma linha da lista, o mapa é movido diretamente para a localização daquele caminhão.
+  - Ao clicar no pin de um caminhão no mapa, é exibido um popup com as informações mais importantes do caminhão.
   - Integração com a API para buscar os dados dos veículos.
+  - **Filtro de Veículos**: Possibilidade de filtrar os veículos por placa, número de rastreador ou distância.
 - **Cadastro de Veículos**:
   - Formulário para cadastrar novos veículos.
   - Campos para identificação, placa, número de série do rastreador e coordenadas (latitude e longitude).
   - Validação de campos e feedback visual.
+  - **Upload de Imagem**: Funcionalidade de upload de imagem para cada caminhão cadastrado, com a exibição da foto na listagem.
+  - **Localização do Usuário**: Captura automática da localização do usuário no cadastro de veículos, facilitando o preenchimento do campo de localização.
 - **Testes Automatizados**:
   - Testes para garantir que a listagem de veículos e o formulário de cadastro funcionem corretamente.
   - Testes de integração com a API.
+- **Relatórios**:
+  - **Botão para Baixar Relatório**: Permite ao usuário baixar a listagem de veículos em formato PDF.
 
 ---
 
 ## Bônus Implementados 🎁
 
 - **Filtro de Veículos**: Adicionei um campo de busca que permite filtrar os veículos por placa, número de rastreador ou distância, facilitando a navegação pela lista.
-- **Upload e Listagem de Imagem**: No formulário de cadastro, implementei a funcionalidade de upload de imagem para permitir o envio de uma foto do caminhão. A imagem também aparece na coluna imagem na listagem dos caminhões
+- **Upload e Listagem de Imagem**: No formulário de cadastro, implementei a funcionalidade de upload de imagem para permitir o envio de uma foto do caminhão. A imagem também aparece na coluna imagem na listagem dos caminhões.
 - **Localização do Usuário**: Na página de cadastro de caminhões, adicionei uma funcionalidade que captura automaticamente a localização atual do usuário e a exibe no mapa, facilitando o preenchimento do campo de localização e melhorando a experiência do usuário.
 - **Interface Melhorada**: Implementei uma **toolbar** para facilitar a navegação, um **footer** com informações adicionais e uma **sidebar retrátil** para melhorar a organização e acessibilidade do layout.
 - **Estrutura do Keycloak**: Preparei a estrutura do Keycloak para uma futura integração de autenticação e autorização no projeto, garantindo que a aplicação esteja pronta para ser escalada com segurança.
 - **Migração de CRA para Vite**: Realizei a migração do projeto de **Create React App (CRA)** para **Vite**. A migração traz melhorias significativas, como tempos de build mais rápidos, inicialização mais ágil e uma configuração mais flexível, melhorando o desempenho geral da aplicação.
 - **Instalação e Configuração do SonarQube**: Instalei e configurei o SonarQube no projeto para garantir a qualidade do código. Durante o desenvolvimento, fiz análises diárias no SonarQube para identificar e corrigir problemas de qualidade e garantir os melhores resultados possíveis no código.
 - **Botão para Baixar Relatório**: Adicionei um botão na tela de listagem que permite ao usuário baixar um relatório contendo a listagem dos caminhões em formato PDF.
-
----
 
 ---
 
