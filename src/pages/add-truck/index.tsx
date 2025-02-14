@@ -126,7 +126,7 @@ const AddTruck = () => {
                     : "Selecionar imagem do caminhão"}
                   <input
                     type="file"
-                    accept="image/*"
+                    accept=".jpg,.jpeg,.png"
                     hidden
                     onChange={handleImageChange}
                   />

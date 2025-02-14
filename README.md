@@ -104,6 +104,11 @@ Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Fron
 - **JSPDF & JSPDF-Autotable**: Geração de PDFs, incluindo tabelas formatadas.
 - **React Router**: Para gerenciamento de rotas.
 - **Styled Components**: Para estilização dos componentes.
+- **PNPM**: Gerenciador de pacotes eficiente e rápido, com as seguintes vantagens:
+  - Instalação de dependências mais rápida, utilizando links simbólicos e economizando espaço em disco.
+  - Cache global que melhora a performance e reduz o tempo de download entre projetos.
+  - Verificação rigorosa de integridade dos pacotes, garantindo mais segurança e estabilidade no ambiente de desenvolvimento.
+  - Menor uso de espaço no disco em comparação com o NPM, especialmente em projetos múltiplos com dependências comuns.
 
 ---
 
@@ -116,6 +121,13 @@ Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Fron
 - **ESLint**: Linter para manter a padronização do código.
 - **Prettier**: Formatação automática do código.
 - **Sonar Scanner**: Análise de código para identificar bugs e vulnerabilidades.
+
+---
+
+## Observações ⚠️
+
+- **Uso do Redux**: Embora o Redux tenha sido utilizado no projeto para gerenciar o estado global dos caminhões após as requisições à API, esse gerenciamento não é essencial para a aplicação. O Redux foi implementado como parte do desafio técnico, mas sua utilização pode ser vista mais como um teste de integração e uma oportunidade de aprender e aplicar o Redux em um projeto real.
+- **Gerenciamento do Estado Global**: Para gerenciar o estado global do snackbar e do loading, foi utilizado o **Zustand**, que proporciona uma abordagem mais leve e eficiente para esses casos de uso, sendo uma solução mais adequada e simples para o gerenciamento de estados localizados na aplicação.
 
 ---
 
