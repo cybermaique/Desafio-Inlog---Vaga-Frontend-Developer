@@ -7,6 +7,7 @@ export interface Truck {
     latitude: number;
     longitude: number;
   };
+  image: string;
 }
 
 export interface TruckWithDistance extends Truck {
