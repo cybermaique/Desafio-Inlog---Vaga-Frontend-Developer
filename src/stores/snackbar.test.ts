@@ -2,28 +2,28 @@ import { describe, expect, it } from "vitest";
 import { useSnackbarStore } from "./snackbar";
 
 describe("useSnackbarStore", () => {
-  it("deve ter o estado inicial correto", () => {
+  it("should have the correct initial state", () => {
     const { open, message, severity } = useSnackbarStore.getState();
     expect(open).toBe(false);
     expect(message).toBe("");
     expect(severity).toBe("info");
   });
 
-  it("deve exibir o snackbar com a mensagem e a severidade corretas", () => {
+  it("should display the snackbar with the correct message and severity", () => {
     const { showSnackbar } = useSnackbarStore.getState();
 
-    showSnackbar("Testando snackbar", "success");
+    showSnackbar("Testing snackbar", "success");
 
     const { open, message, severity } = useSnackbarStore.getState();
     expect(open).toBe(true);
-    expect(message).toBe("Testando snackbar");
+    expect(message).toBe("Testing snackbar");
     expect(severity).toBe("success");
   });
 
-  it("deve fechar o snackbar corretamente", () => {
+  it("should close the snackbar correctly", () => {
     const { closeSnackbar, showSnackbar } = useSnackbarStore.getState();
 
-    showSnackbar("Testando fechamento", "error");
+    showSnackbar("Testing close", "error");
     expect(useSnackbarStore.getState().open).toBe(true);
 
     closeSnackbar();
@@ -32,10 +32,10 @@ describe("useSnackbarStore", () => {
     expect(useSnackbarStore.getState().severity).toBe("info");
   });
 
-  it('deve usar "info" como severidade padrão ao exibir o snackbar', () => {
+  it('should use "info" as the default severity when showing the snackbar', () => {
     const { showSnackbar } = useSnackbarStore.getState();
 
-    showSnackbar("Mensagem sem severidade especificada");
+    showSnackbar("Message without specified severity");
     expect(useSnackbarStore.getState().severity).toBe("info");
   });
 });

@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import Home from ".";
 
 describe("Home Page", () => {
-  it("deve renderizar o título e o subtítulo corretamente", () => {
+  it("should render the title and subtitle correctly", () => {
     render(<Home />);
 
     expect(
@@ -17,7 +17,7 @@ describe("Home Page", () => {
     ).toBeInTheDocument();
   });
 
-  it("deve renderizar a imagem corretamente", () => {
+  it("should render the image correctly", () => {
     render(<Home />);
 
     const img = screen.getByAltText("Home Image");

@@ -2,12 +2,12 @@ import { describe, expect, it } from "vitest";
 import { useLoadingStore } from "./loading";
 
 describe("useLoadingStore", () => {
-  it("deve ter o estado inicial isLoading como false", () => {
+  it("should have the initial state of isLoading as false", () => {
     const { isLoading } = useLoadingStore.getState();
     expect(isLoading).toBe(false);
   });
 
-  it("deve atualizar o estado isLoading corretamente", () => {
+  it("should update the isLoading state correctly", () => {
     const { setLoading, isLoading } = useLoadingStore.getState();
 
     expect(isLoading).toBe(false);
@@ -17,7 +17,7 @@ describe("useLoadingStore", () => {
     expect(useLoadingStore.getState().isLoading).toBe(true);
   });
 
-  it("deve alternar o estado isLoading entre true e false", () => {
+  it("should toggle the isLoading state between true and false", () => {
     const { setLoading } = useLoadingStore.getState();
 
     setLoading(true);

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import truckSchema from "./truck-schema";
 
 describe("truckSchema", () => {
-  it("deve validar corretamente os dados válidos", () => {
+  it("should validate valid data correctly", () => {
     const data = {
       identifier: "TRK123",
       license_plate: "ABC-1234",
@@ -15,7 +15,7 @@ describe("truckSchema", () => {
     expect(result.success).toBe(true);
   });
 
-  it("deve retornar erro para identificador com menos de 3 caracteres", () => {
+  it("should return error for identifier with less than 3 characters", () => {
     const data = {
       identifier: "TR",
       license_plate: "ABC-1234",
@@ -33,7 +33,7 @@ describe("truckSchema", () => {
     }
   });
 
-  it("deve retornar erro para placa inválida", () => {
+  it("should return error for invalid license plate", () => {
     const data = {
       identifier: "TRK123",
       license_plate: "ABC-12345",
@@ -49,7 +49,7 @@ describe("truckSchema", () => {
     }
   });
 
-  it("deve retornar erro para latitude inválida", () => {
+  it("should return error for invalid latitude", () => {
     const data = {
       identifier: "TRK123",
       license_plate: "ABC-1234",
@@ -65,7 +65,7 @@ describe("truckSchema", () => {
     }
   });
 
-  it("deve retornar 'Campo obrigatório' quando um campo obrigatório está faltando", () => {
+  it("should return 'Campo obrigatório' when a required field is missing", () => {
     const data = {
       license_plate: "ABC-1234",
       tracker_serial_number: "SN12345",
@@ -80,7 +80,7 @@ describe("truckSchema", () => {
     }
   });
 
-  it("deve retornar 'Campo obrigatório' para tipo inválido", () => {
+  it("should return 'Campo obrigatório' for invalid type", () => {
     const data = {
       identifier: "TRK123",
       license_plate: "ABC-1234",

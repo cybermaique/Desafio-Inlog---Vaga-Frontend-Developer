@@ -6,14 +6,14 @@ import NoResultsFound from "../../assets/images/no-results-found.svg";
 import { colors } from "../../styles/colors";
 
 describe("NoResults Component", () => {
-  it("renders the NoResults component correctly", () => {
+  it("should render the NoResults component correctly", () => {
     render(<NoResults />);
 
     const container = screen.getByRole("img").parentElement;
     expect(container).toBeInTheDocument();
   });
 
-  it("displays the correct image with alt text", () => {
+  it("should display the correct image with alt text", () => {
     render(<NoResults />);
 
     const image = screen.getByRole("img", {
@@ -24,7 +24,7 @@ describe("NoResults Component", () => {
     expect(image).toHaveAttribute("width", "200");
   });
 
-  it("displays the correct title and description", () => {
+  it("should display the correct title and description", () => {
     render(<NoResults />);
 
     const title = screen.getByText(/Nenhum caminhão encontrado/i);

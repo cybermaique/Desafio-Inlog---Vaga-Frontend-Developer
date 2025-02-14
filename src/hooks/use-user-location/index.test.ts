@@ -12,7 +12,7 @@ describe("useUserLocation", () => {
     });
   });
 
-  it("deve retornar a localização do usuário corretamente", async () => {
+  it("should return the user's location correctly", async () => {
     const mockPosition = {
       coords: {
         latitude: 40.7128,
@@ -35,10 +35,10 @@ describe("useUserLocation", () => {
     });
   });
 
-  it("deve lidar com erro ao obter a localização", async () => {
+  it("should handle errors when obtaining the location", async () => {
     (navigator.geolocation.getCurrentPosition as Mock).mockImplementationOnce(
       (_, error) => {
-        error(new Error("Erro ao obter a localização"));
+        error(new Error("Error getting the location"));
       }
     );
 

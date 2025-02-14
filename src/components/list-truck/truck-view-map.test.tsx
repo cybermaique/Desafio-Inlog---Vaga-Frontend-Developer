@@ -31,7 +31,7 @@ const mockTrucks: Truck[] = [
 ];
 
 describe("TruckViewMap", () => {
-  it("deve renderizar o mapa com os componentes necessários", () => {
+  it("should render the map with necessary components", () => {
     render(<TruckViewMap trucks={mockTrucks} selectedTruck={null} />);
 
     expect(screen.getByTestId("map")).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe("TruckViewMap", () => {
     expect(screen.getByTestId("marker")).toBeInTheDocument();
   });
 
-  it("deve atualizar a posição ao selecionar um caminhão", () => {
+  it("should update the position when a truck is selected", () => {
     render(<TruckViewMap trucks={mockTrucks} selectedTruck={mockTrucks[0]} />);
     expect(screen.getByTestId("marker")).toHaveAttribute("data-lat", "-23.55");
     expect(screen.getByTestId("marker")).toHaveAttribute("data-lng", "-46.63");

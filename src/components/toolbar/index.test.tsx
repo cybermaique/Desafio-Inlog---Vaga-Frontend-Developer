@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import Toolbar from ".";
 
 describe("Toolbar Component", () => {
-  it("deve renderizar corretamente", () => {
+  it("should render correctly", () => {
     render(
       <BrowserRouter>
         <Toolbar onClickMenu={vi.fn()} />
@@ -18,7 +18,7 @@ describe("Toolbar Component", () => {
     expect(screen.getByTestId("KeyboardArrowDownIcon")).toBeInTheDocument();
   });
 
-  it("deve chamar onClickMenu ao clicar no ícone de menu", () => {
+  it("should call onClickMenu when the menu icon is clicked", () => {
     const onClickMenuMock = vi.fn();
     render(
       <BrowserRouter>
@@ -31,7 +31,7 @@ describe("Toolbar Component", () => {
     expect(onClickMenuMock).toHaveBeenCalled();
   });
 
-  it("deve chamar handleLogout ao clicar em 'Sair'", () => {
+  it("should call handleLogout when 'Sair' is clicked", () => {
     render(
       <BrowserRouter>
         <Toolbar onClickMenu={vi.fn()} />

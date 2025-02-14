@@ -1,18 +1,19 @@
 import { describe, expect, it, vi } from "vitest";
-import { addTruck } from "../post-truck";
+import { addTruck } from "./post-truck";
 
 vi.mock("../api/addTruck", () => ({
   addTruck: vi.fn(),
 }));
 
 describe("addTruck", () => {
-  it("deve cadastrar o caminhão com sucesso", async () => {
+  it("should successfully register the truck", async () => {
     const mockResponse = {
       id: "1",
       identifier: "12345",
       license_plate: "XYZ123",
       tracker_serial_number: "ABC456",
       coordinates: { latitude: 0, longitude: 0 },
+      image: "",
     };
     global.fetch = vi.fn().mockResolvedValue({
       ok: true,
@@ -25,6 +26,7 @@ describe("addTruck", () => {
       license_plate: "XYZ123",
       tracker_serial_number: "ABC456",
       coordinates: { latitude: 0, longitude: 0 },
+      image: "",
     };
 
     const result = await addTruck(url, { arg: newTruck });
@@ -37,7 +39,7 @@ describe("addTruck", () => {
     expect(result).toEqual(mockResponse);
   });
 
-  it("deve lançar erro quando a requisição falhar", async () => {
+  it("should throw an error when the request fails", async () => {
     global.fetch = vi.fn().mockResolvedValue({
       ok: false,
       json: () => Promise.resolve({}),
@@ -49,6 +51,7 @@ describe("addTruck", () => {
       license_plate: "XYZ123",
       tracker_serial_number: "ABC456",
       coordinates: { latitude: 0, longitude: 0 },
+      image: "",
     };
 
     await expect(addTruck(url, { arg: newTruck })).rejects.toThrowError(

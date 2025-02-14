@@ -41,7 +41,7 @@ vi.stubGlobal("navigator", {
 });
 
 describe("AddTruck", () => {
-  it("deve renderizar o formulário corretamente", () => {
+  it("should render the form correctly", () => {
     render(
       <SWRConfig value={{ provider: () => new Map() }}>
         <AddTruck />
@@ -59,7 +59,7 @@ describe("AddTruck", () => {
     expect(screen.getByText(/salvar caminhão/i)).toBeInTheDocument();
   });
 
-  it("deve chamar o onSubmit com dados válidos", async () => {
+  it("should call onSubmit with valid data", async () => {
     const mockSetLoading = vi.fn();
 
     (useLoadingStore as unknown as Mock).mockReturnValue({
@@ -90,7 +90,7 @@ describe("AddTruck", () => {
     });
   });
 
-  it("deve mostrar erro quando os campos obrigatórios não forem preenchidos", async () => {
+  it("should show error when required fields are not filled", async () => {
     render(
       <SWRConfig value={{ provider: () => new Map() }}>
         <AddTruck />
@@ -107,7 +107,7 @@ describe("AddTruck", () => {
     });
   });
 
-  it("deve chamar o botão de localização e atualizar a posição", async () => {
+  it("should call the location button and update the position", async () => {
     render(
       <SWRConfig value={{ provider: () => new Map() }}>
         <AddTruck />

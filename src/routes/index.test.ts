@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { routes } from ".";
 
 describe("Routes", () => {
-  it("deve ter a rota da página inicial configurada corretamente", () => {
+  it("should have the home page route configured correctly", () => {
     const homeRoute = routes.find((route) => route.path === "/");
     expect(homeRoute).toBeDefined();
     expect(homeRoute?.title).toBe("Página inicial");
@@ -10,7 +10,7 @@ describe("Routes", () => {
     expect(homeRoute?.element).toBeDefined();
   });
 
-  it("deve ter a rota de listagem de caminhões configurada corretamente", () => {
+  it("should have the truck listing route configured correctly", () => {
     const truckListRoute = routes.find(
       (route) => route.path === "/caminhoes/listar"
     );
@@ -20,7 +20,7 @@ describe("Routes", () => {
     expect(truckListRoute?.element).toBeDefined();
   });
 
-  it("deve ter a rota de cadastrar caminhão configurada corretamente", () => {
+  it("should have the add truck route configured correctly", () => {
     const addTruckRoute = routes.find(
       (route) => route.path === "/caminhoes/cadastrar"
     );

@@ -7,7 +7,7 @@ import { useLoadingStore } from "../../stores/loading";
 vi.mock("../../stores/loading");
 
 describe("Loader Component", () => {
-  it("deve renderizar o Backdrop e o CircularProgress quando isLoading for true", () => {
+  it("should render the Backdrop and CircularProgress when isLoading is true", () => {
     (useLoadingStore as unknown as Mock).mockReturnValue({ isLoading: true });
 
     render(<Loader />);

@@ -62,7 +62,7 @@ describe("TruckTable", () => {
     setIsDistanceDescending = vi.fn();
   });
 
-  it("deve renderizar a tabela corretamente", () => {
+  it("should render the table correctly", () => {
     render(
       <TruckTable
         trucks={mockTrucks}
@@ -75,7 +75,7 @@ describe("TruckTable", () => {
     expect(screen.getByRole("table")).toBeInTheDocument();
   });
 
-  it("deve renderizar as colunas corretamente", () => {
+  it("should render the columns correctly", () => {
     render(
       <TruckTable
         trucks={mockTrucks}
@@ -91,7 +91,7 @@ describe("TruckTable", () => {
     });
   });
 
-  it("deve alterar a ordenação ao clicar em uma coluna ordenável", () => {
+  it("should change sorting when clicking on a sortable column", () => {
     render(
       <TruckTable
         trucks={mockTrucks}
@@ -110,7 +110,7 @@ describe("TruckTable", () => {
     expect(setIsDistanceDescending).toHaveBeenCalledWith(true);
   });
 
-  it("deve exibir a quantidade correta de resultados", () => {
+  it("should display the correct number of results", () => {
     render(
       <TruckTable
         trucks={mockTrucks}
@@ -126,7 +126,7 @@ describe("TruckTable", () => {
     ).toBeInTheDocument();
   });
 
-  it("deve paginar corretamente ao mudar de página", () => {
+  it("should paginate correctly when changing pages", () => {
     render(
       <TruckTable
         trucks={mockTrucks}

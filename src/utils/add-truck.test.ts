@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { convertFileToBase64 } from "./add-truck";
 
 describe("convertFileToBase64", () => {
-  it("deve converter um arquivo para Base64", async () => {
-    const file = new File(["conteúdo do arquivo"], "teste.txt", {
+  it("should convert a file to Base64", async () => {
+    const file = new File(["file content"], "test.txt", {
       type: "text/plain",
     });
 

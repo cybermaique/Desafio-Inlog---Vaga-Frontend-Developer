@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { TruckListSkeleton } from ".";
 
 describe("TruckListSkeleton Component", () => {
-  it("deve renderizar 3 Skeletons dentro de Cards", () => {
+  it("should render 3 Skeletons inside Cards", () => {
     render(<TruckListSkeleton />);
 
     const cards = screen.getAllByTestId("Card");

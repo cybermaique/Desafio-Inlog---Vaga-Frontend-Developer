@@ -4,14 +4,14 @@ import { describe, expect, it } from "vitest";
 import PageHeader from ".";
 
 describe("PageHeader Component", () => {
-  it("deve renderizar corretamente com título e subtítulo", () => {
+  it("should render correctly with title and subtitle", () => {
     render(<PageHeader title="Título Teste" subtitle="Subtítulo Teste" />);
 
     expect(screen.getByText("Título Teste")).toBeInTheDocument();
     expect(screen.getByText("Subtítulo Teste")).toBeInTheDocument();
   });
 
-  it("deve aplicar as variantes corretas de tipografia", () => {
+  it("should apply the correct typography variants", () => {
     render(<PageHeader title="Título Teste" subtitle="Subtítulo Teste" />);
 
     expect(screen.getByText("Título Teste")).toHaveAttribute(

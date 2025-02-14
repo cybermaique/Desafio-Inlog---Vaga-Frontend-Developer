@@ -13,7 +13,7 @@ afterEach(() => {
 });
 
 describe("Mirage Server", () => {
-  it("deve retornar a lista de caminhões", async () => {
+  it("should return the list of trucks", async () => {
     const response = await fetch("/api/caminhoes");
     const data = await response.json();
 
@@ -24,7 +24,7 @@ describe("Mirage Server", () => {
     expect(data.trucks[0]).toHaveProperty("license_plate");
   });
 
-  it("deve cadastrar um novo caminhão", async () => {
+  it("should register a new truck", async () => {
     const newTruck = {
       identifier: "Caminhão 4 - São Paulo (SP)",
       license_plate: "XYZ-5678",
@@ -44,7 +44,7 @@ describe("Mirage Server", () => {
     expect(data.truck.identifier).toBe(newTruck.identifier);
   });
 
-  it("deve retornar erro ao tentar cadastrar um caminhão com dados inválidos", async () => {
+  it("should return an error when trying to register a truck with invalid data", async () => {
     const invalidTruck = {
       license_plate: "XYZ-5678",
       tracker_serial_number: "T11111",

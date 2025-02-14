@@ -15,7 +15,7 @@ const initialFilters = {
 };
 
 describe("TruckFilters", () => {
-  it("renderiza os campos de input e botões", () => {
+  it("renders input fields and buttons", () => {
     render(
       <TruckFilters
         filters={initialFilters}
@@ -33,7 +33,7 @@ describe("TruckFilters", () => {
     expect(screen.getByRole("button", { name: /Buscar/i })).toBeDisabled();
   });
 
-  it("habilita os botões quando há filtros preenchidos", () => {
+  it("enables buttons when filters are filled", () => {
     render(
       <TruckFilters
         filters={{ ...initialFilters, licensePlate: "ABC-1234" }}
@@ -48,7 +48,7 @@ describe("TruckFilters", () => {
     expect(screen.getByRole("button", { name: /Buscar/i })).not.toBeDisabled();
   });
 
-  it("chama setFilters corretamente ao digitar no campo de Placa", () => {
+  it("calls setFilters correctly when typing in the license plate field", () => {
     render(
       <TruckFilters
         filters={initialFilters}
@@ -67,7 +67,7 @@ describe("TruckFilters", () => {
     );
   });
 
-  it("chama setFilters corretamente ao digitar no campo de Rastreador", () => {
+  it("calls setFilters correctly when typing in the tracker field", () => {
     render(
       <TruckFilters
         filters={initialFilters}
@@ -86,7 +86,7 @@ describe("TruckFilters", () => {
     );
   });
 
-  it("chama onSearch ao clicar no botão Buscar", () => {
+  it("calls onSearch when clicking the Search button", () => {
     render(
       <TruckFilters
         filters={{ ...initialFilters, licensePlate: "XYZ-5678" }}
@@ -101,7 +101,7 @@ describe("TruckFilters", () => {
     expect(mockOnSearch).toHaveBeenCalled();
   });
 
-  it("chama onClear ao clicar no botão Limpar", () => {
+  it("calls onClear when clicking the Clear button", () => {
     render(
       <TruckFilters
         filters={{ ...initialFilters, licensePlate: "XYZ-5678" }}

@@ -6,9 +6,7 @@ import Layout from ".";
 
 vi.mock("../sidebar/index", () => ({
   default: ({ open }: { open: boolean }) => (
-    <div data-testid="Sidebar">
-      {open ? "Sidebar Aberto" : "Sidebar Fechado"}
-    </div>
+    <div data-testid="Sidebar">{open ? "Sidebar Open" : "Sidebar Closed"}</div>
   ),
 }));
 
@@ -21,36 +19,36 @@ vi.mock("../toolbar/index", () => ({
 }));
 
 describe("Layout Component", () => {
-  it("deve renderizar Toolbar, Sidebar e children corretamente", () => {
+  it("should render Toolbar, Sidebar, and children correctly", () => {
     render(
       <BrowserRouter>
         <Layout>
-          <div data-testid="Content">Conteúdo</div>
+          <div data-testid="Content">Content</div>
         </Layout>
       </BrowserRouter>
     );
 
     expect(screen.getByTestId("ToolbarButton")).toBeInTheDocument();
-    expect(screen.getByTestId("Sidebar")).toHaveTextContent("Sidebar Aberto");
-    expect(screen.getByTestId("Content")).toHaveTextContent("Conteúdo");
+    expect(screen.getByTestId("Sidebar")).toHaveTextContent("Sidebar Open");
+    expect(screen.getByTestId("Content")).toHaveTextContent("Content");
   });
 
-  it("deve alternar a visibilidade do Sidebar ao clicar no botão do Toolbar", () => {
+  it("should toggle Sidebar visibility when clicking the Toolbar button", () => {
     render(
       <BrowserRouter>
         <Layout>
-          <div data-testid="Content">Conteúdo</div>
+          <div data-testid="Content">Content</div>
         </Layout>
       </BrowserRouter>
     );
 
     const toolbarButton = screen.getByTestId("ToolbarButton");
-    expect(screen.getByTestId("Sidebar")).toHaveTextContent("Sidebar Aberto");
+    expect(screen.getByTestId("Sidebar")).toHaveTextContent("Sidebar Open");
 
     fireEvent.click(toolbarButton);
-    expect(screen.getByTestId("Sidebar")).toHaveTextContent("Sidebar Fechado");
+    expect(screen.getByTestId("Sidebar")).toHaveTextContent("Sidebar Closed");
 
     fireEvent.click(toolbarButton);
-    expect(screen.getByTestId("Sidebar")).toHaveTextContent("Sidebar Aberto");
+    expect(screen.getByTestId("Sidebar")).toHaveTextContent("Sidebar Open");
   });
 });
