@@ -1,11 +1,17 @@
 # TruckTracker - Desafio Inlog 🚀
+
 ## Descrição do Projeto 📜
+
 Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Frontend Developer na Inlog. O objetivo foi criar uma aplicação React com duas páginas principais:
+
 1. **Listagem de Caminhões**: Exibe uma lista de veículos ordenados pela proximidade do usuário, com um mapa interativo (usando Leaflet) que mostra a localização de cada veículo.
 2. **Adição de Caminhões**: Permite ao usuário cadastrar novos veículos, incluindo informações básicas e a localização (coordenadas).
-O projeto foi desenvolvido com React, TypeScript, e utiliza bibliotecas como Leaflet para mapas, Axios para requisições à API, e React Testing Library para testes automatizados.
+   O projeto foi desenvolvido com React, TypeScript, e utiliza bibliotecas como Leaflet para mapas, Axios para requisições à API, e React Testing Library para testes automatizados.
+
 ---
+
 ## Funcionalidades ✨
+
 - **Listagem de Veículos**:
   - Lista de veículos ordenada pela proximidade do usuário.
   - Mapa interativo com pins indicando a localização de cada veículo.
@@ -17,17 +23,34 @@ O projeto foi desenvolvido com React, TypeScript, e utiliza bibliotecas como Lea
 - **Testes Automatizados**:
   - Testes para garantir que a listagem de veículos e o formulário de cadastro funcionem corretamente.
   - Testes de integração com a API.
+
 ---
+
 ## Bônus Implementados 🎁
+
 - **Filtro de Veículos**: Adicionei um campo de busca para filtrar veículos por nome ou placa.
 - **Upload de Imagem**: No formulário de cadastro, é possível adicionar uma imagem do veículo.
+
 ---
+
 ## Pré-visualização 🎥
-### Listagem de Veículos
+
+### Home
+
+![alt text](home.png)
+
+### Listagem de Caminhões
+
+![alt text](list-trucks.png)
+
 ### Cadastro de Veículos
-### GIF de Demonstração
+
+![alt text](register-trucks.png)
+
 ---
+
 ## Tecnologias Utilizadas 🛠️
+
 - **React**: Biblioteca principal para construção da interface.
 - **TypeScript**: Para tipagem estática e melhor organização do código.
 - **Vite**: Build tool rápida para desenvolvimento e produção.
@@ -45,7 +68,9 @@ O projeto foi desenvolvido com React, TypeScript, e utiliza bibliotecas como Lea
 - **JSPDF & JSPDF-Autotable**: Geração de PDFs, incluindo tabelas formatadas.
 - **React Router**: Para gerenciamento de rotas.
 - **Styled Components**: Para estilização dos componentes.
+
 ### Testes e Qualidade de Código 🧪
+
 - **Vitest**: Framework de testes unitários e integração.
 - **React Testing Library**: Testes focados na usabilidade de componentes.
 - **Jest DOM**: Extensões do Jest para testar o DOM de maneira mais intuitiva.
