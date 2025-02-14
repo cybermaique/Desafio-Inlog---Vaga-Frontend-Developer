@@ -1,50 +1,77 @@
-# React + TypeScript + Vite
+# TruckTracker - Desafio Inlog 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descrição do Projeto 📜
 
-Currently, two official plugins are available:
+Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Frontend Developer na Inlog. O objetivo foi criar uma aplicação React com duas páginas principais:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Listagem de Caminhões**: Exibe uma lista de veículos ordenados pela proximidade do usuário, com um mapa interativo (usando Leaflet) que mostra a localização de cada veículo.
+2. **Adição de Caminhões**: Permite ao usuário cadastrar novos veículos, incluindo informações básicas e a localização (coordenadas).
 
-## Expanding the ESLint configuration
+O projeto foi desenvolvido com React, TypeScript, e utiliza bibliotecas como Leaflet para mapas, Axios para requisições à API, e React Testing Library para testes automatizados.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## Funcionalidades ✨
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Listagem de Veículos**:
+  - Lista de veículos ordenada pela proximidade do usuário.
+  - Mapa interativo com pins indicando a localização de cada veículo.
+  - Integração com a API para buscar os dados dos veículos.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Cadastro de Veículos**:
+  - Formulário para cadastrar novos veículos.
+  - Campos para identificação, placa, número de série do rastreador e coordenadas (latitude e longitude).
+  - Validação de campos e feedback visual.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **Testes Automatizados**:
+  - Testes para garantir que a listagem de veículos e o formulário de cadastro funcionem corretamente.
+  - Testes de integração com a API.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+## Bônus Implementados 🎁
+
+- **Filtro de Veículos**: Adicionei um campo de busca para filtrar veículos por nome ou placa.
+- **Upload de Imagem**: No formulário de cadastro, é possível adicionar uma imagem do veículo.
+
+---
+
+## Pré-visualização 🎥
+
+### Listagem de Veículos
+
+### Cadastro de Veículos
+
+### GIF de Demonstração
+
+---
+
+## Tecnologias Utilizadas 🛠️
+
+- **React**: Biblioteca principal para construção da interface.
+- **TypeScript**: Para tipagem estática e melhor organização do código.
+- **Vite**: Build tool rápida para desenvolvimento e produção.
+- **MUI (Material UI)**: Biblioteca de componentes para estilização moderna.
+- **Emotion**: Biblioteca de CSS-in-JS usada pelo MUI.
+- **Leaflet & React Leaflet**: Biblioteca para exibição de mapas interativos.
+- **Axios**: Para requisições HTTP à API.
+- **SWR**: Gerenciamento de estado assíncrono para requisições e cache de dados.
+- **React Hook Form**: Gerenciamento de formulários com validação eficiente.
+- **Zod**: Biblioteca de validação de schemas integrada ao React Hook Form.
+- **UUID**: Para geração de identificadores únicos universais.
+- **Zustand**: Gerenciamento de estado leve e eficiente.
+- **MirageJS**: Simulação de API para desenvolvimento sem backend.
+- **Keycloak JS**: Gerenciamento de autenticação e autorização.
+- **JSPDF & JSPDF-Autotable**: Geração de PDFs, incluindo tabelas formatadas.
+- **React Router**: Para gerenciamento de rotas.
+- **Styled Components**: Para estilização dos componentes.
+
+### Testes e Qualidade de Código 🧪
+
+- **Vitest**: Framework de testes unitários e integração.
+- **React Testing Library**: Testes focados na usabilidade de componentes.
+- **Jest DOM**: Extensões do Jest para testar o DOM de maneira mais intuitiva.
+- **Testing Library User Event**: Simulação interativa de eventos do usuário.
+- **ESLint**: Linter para manter a padronização do código.
+- **Prettier**: Formatação automática do código.
+- **Sonar Scanner**: Análise de código para identificar bugs e vulnerabilidades.
