@@ -6,6 +6,7 @@ import { TruckViewMap } from "../../components/list-truck/truck-view-map";
 import NoResults from "../../components/no-results";
 import PageHeader from "../../components/page-header";
 import { TruckListSkeleton } from "../../components/skeleton";
+import { PAPER_STYLES } from "../../constants/styles";
 import useUserLocation from "../../hooks/use-user-location";
 import { Truck, TruckWithDistance } from "../../interfaces/truck";
 import { useGetTrucks } from "../../services/get-trucks";
@@ -46,6 +47,8 @@ const ListTruck = () => {
     setAppliedFilters(clearedFilters);
   };
 
+  const hasData = !isLoading && filteredTrucks.length > 0;
+
   useEffect(() => {
     if (userLocation) {
       setFilteredTrucks(
@@ -68,35 +71,34 @@ const ListTruck = () => {
   }, [error, showSnackbar]);
 
   return (
-    <Container maxWidth={false}>
+    <Container maxWidth={false} aria-busy={isLoading}>
       <Box display="flex" flexDirection="column" gap={2} mt={2}>
         <PageHeader
           title="Listagem de Caminhões"
           subtitle="Confira a localização e detalhes dos caminhões disponíveis."
         />
-        <Paper
-          elevation={0}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 4.5,
-            padding: 2,
-            borderRadius: 2,
-          }}
-        >
-          <TruckFilters
-            filters={filters}
-            setFilters={setFilters}
-            onSearch={handleSearch}
-            onKeyDown={handleKeyDown}
-            onClear={handleClear}
-          />
+        <Paper elevation={0} sx={PAPER_STYLES}>
+          {hasData && (
+            <TruckFilters
+              filters={filters}
+              setFilters={setFilters}
+              onSearch={handleSearch}
+              onKeyDown={handleKeyDown}
+              onClear={handleClear}
+            />
+          )}
 
-          <TruckViewMap trucks={filteredTrucks} selectedTruck={selectedTruck} />
+          {(isLoading || hasData) && (
+            <TruckViewMap
+              key={filteredTrucks.length}
+              trucks={filteredTrucks}
+              selectedTruck={selectedTruck}
+            />
+          )}
 
           {isLoading && <TruckListSkeleton />}
           {!isLoading && filteredTrucks.length === 0 && <NoResults />}
-          {!isLoading && filteredTrucks.length > 0 && (
+          {hasData && (
             <TruckTable
               trucks={filteredTrucks}
               selectedTruck={selectedTruck}

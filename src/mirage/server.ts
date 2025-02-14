@@ -24,7 +24,11 @@ export function makeServer() {
       this.namespace = "api";
 
       this.get("/caminhoes", (schema) => {
-        return schema.all("truck");
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(schema.all("truck"));
+          }, 300);
+        });
       });
 
       this.post("/caminhao", (schema, request) => {
