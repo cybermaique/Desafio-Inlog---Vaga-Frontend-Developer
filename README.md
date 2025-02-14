@@ -26,19 +26,19 @@ Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Fron
 
 ### GIF Sidebar, Toolbar e Home
 
-![alt text](inicio.gif)
+![alt text](home.gif)
 
 ### GIF Listagem
 
-![alt text](listagem.gif)
+![alt text](list-trucks.gif)
 
 ### GIF Cadastro
 
-![alt text](cadastro.gif)
+![alt text](register.gif)
 
 ### GIF Exportar Relatório
 
-![alt text](relatorio.gif)
+![alt text](report.gif)
 
 ---
 
