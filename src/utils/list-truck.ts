@@ -1,9 +1,6 @@
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
-import {
-  TruckNormalized,
-  TruckWithDistance,
-} from "../interfaces/truck-normalized";
+import { TruckApiResponse, TruckWithDistance } from "../interfaces/truck";
 import { formatDate } from "./date";
 
 export const getTruckCellValue = (
@@ -56,7 +53,7 @@ export const getDistance = (
 };
 
 export const sortAndFilterTrucks = (
-  trucks: TruckNormalized[],
+  trucks: TruckApiResponse[],
   appliedFilters: any,
   isDistanceDescending: boolean,
   userLocation: { latitude: number; longitude: number }

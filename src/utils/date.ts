@@ -1,9 +1,9 @@
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
+import dayjs from "dayjs";
+import "dayjs/locale/pt-br";
 
 export const formatDate = (
-  date: Date | string,
-  dateFormat: string = "dd/MM/yyyy"
+  date: string | Date,
+  dateFormat: string = "DD/MM/YYYY"
 ): string => {
-  return format(new Date(date), dateFormat, { locale: ptBR });
+  return dayjs(date).locale("pt-br").format(dateFormat);
 };

@@ -1,4 +1,4 @@
-import { NewTruck } from "../interfaces/truck-normalized";
+import { NewTruck } from "../interfaces/truck";
 
 export const addTruck = async (url: string, { arg }: { arg: NewTruck }) => {
   const response = await fetch(url, {

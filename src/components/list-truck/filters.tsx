@@ -42,7 +42,11 @@ export const TruckFilters = ({
     !(filters.maxDistance?.trim() ?? "");
 
   return (
-    <Box display="flex" justifyContent="space-between">
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      data-testid="truck-filters"
+    >
       <Box display="flex" gap={2} flexWrap="wrap" alignItems="center">
         <TextField
           label="Placa"

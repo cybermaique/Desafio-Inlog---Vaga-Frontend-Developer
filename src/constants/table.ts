@@ -7,6 +7,7 @@ export const TRUCK_TABLE_COLUMNS = [
   { key: "coordinates.latitude", label: "Latitude", sortable: false },
   { key: "coordinates.longitude", label: "Longitude", sortable: false },
   { key: "start_date", label: "Data de início", sortable: false },
+  { key: "actions", label: "Ações", sortable: false },
 ];
 
 export const PAGE_SIZE_OPTIONS = [5, 10, 25, 50];
