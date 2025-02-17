@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TruckNormalized } from "../interfaces/truck-normalized";
+import { TruckApiResponse } from "../interfaces/truck";
 
 interface TrucksState {
-  trucks: TruckNormalized[];
+  trucks: TruckApiResponse[];
 }
 
 const initialState: TrucksState = {
@@ -13,7 +13,7 @@ const trucksSlice = createSlice({
   name: "trucks",
   initialState,
   reducers: {
-    setTrucks: (state, action: PayloadAction<TruckNormalized[]>) => {
+    setTrucks: (state, action: PayloadAction<TruckApiResponse[]>) => {
       state.trucks = action.payload;
     },
   },

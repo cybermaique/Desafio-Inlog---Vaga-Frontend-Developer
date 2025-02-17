@@ -4,7 +4,7 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { Box, IconButton } from "@mui/material";
 import { TablePaginationActionsProps } from "@mui/material/TablePagination/TablePaginationActions";
-import { usePagination } from "../../hooks/use-pagination";
+import { usePagination } from "../../../hooks/use-pagination";
 
 export const CustomActionsComponent = (props: TablePaginationActionsProps) => {
   const {

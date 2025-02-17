@@ -1,4 +1,4 @@
-export interface TruckNormalized {
+export interface TruckApiResponse {
   id: string;
   identifier: string;
   license_plate: string;
@@ -11,8 +11,8 @@ export interface TruckNormalized {
   start_date: string;
 }
 
-export interface TruckWithDistance extends TruckNormalized {
+export interface TruckWithDistance extends TruckApiResponse {
   distance: number;
 }
 
-export type NewTruck = Omit<TruckNormalized, "id">;
+export type NewTruck = Omit<TruckApiResponse, "id">;

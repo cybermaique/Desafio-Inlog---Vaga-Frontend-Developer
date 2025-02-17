@@ -1,5 +1,8 @@
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   Box,
+  IconButton,
+  Menu,
   MenuItem,
   Paper,
   Select,
@@ -18,22 +21,21 @@ import {
   DEFAULT_TRUCK_IMAGE,
   PAGE_SIZE_OPTIONS,
   TRUCK_TABLE_COLUMNS,
-} from "../../constants/table";
-import {
-  TruckNormalized,
-  TruckWithDistance,
-} from "../../interfaces/truck-normalized";
-import { colors } from "../../styles/colors";
-import { formatDate } from "../../utils/date";
-import { getTruckCellValue } from "../../utils/list-truck";
+} from "../../../constants/table";
+import { TruckWithDistance } from "../../../interfaces/truck";
+import { colors } from "../../../styles/colors";
+import { formatDate } from "../../../utils/date";
+import { getTruckCellValue } from "../../../utils/list-truck";
 import { CustomActionsComponent } from "./custom-actions-component";
 
 interface TruckTableProps {
   trucks: TruckWithDistance[];
-  selectedTruck: TruckNormalized | null;
-  setSelectedTruck: (truck: TruckNormalized | null) => void;
+  selectedTruck: TruckWithDistance | null;
+  setSelectedTruck: (truck: TruckWithDistance | null) => void;
   setIsDistanceDescending: (prev: boolean) => void;
   isDistanceDescending: boolean;
+  handleEditOpen: (truck: TruckWithDistance) => void;
+  handleDeleteOpen: (truck: TruckWithDistance) => void;
 }
 
 export const TruckTable = ({
@@ -42,12 +44,30 @@ export const TruckTable = ({
   setSelectedTruck,
   setIsDistanceDescending,
   isDistanceDescending,
+  handleEditOpen,
+  handleDeleteOpen,
 }: TruckTableProps) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [selectedTruckForMenu, setSelectedTruckForMenu] =
+    useState<TruckWithDistance | null>(null);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
+  };
+
+  const handleMenuOpen = (
+    event: React.MouseEvent<HTMLElement>,
+    truck: TruckWithDistance
+  ) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedTruckForMenu(truck);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setSelectedTruckForMenu(null);
   };
 
   useEffect(() => {
@@ -116,6 +136,14 @@ export const TruckTable = ({
                         width={70}
                         height={50}
                       />
+                    ) : column.key === "actions" ? (
+                      <>
+                        <IconButton
+                          onClick={(event) => handleMenuOpen(event, truck)}
+                        >
+                          <MoreVertIcon />
+                        </IconButton>
+                      </>
                     ) : (
                       getTruckCellValue(truck, column.key)
                     )}
@@ -125,6 +153,30 @@ export const TruckTable = ({
             ))}
         </TableBody>
       </Table>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem
+          onClick={() => {
+            handleEditOpen(selectedTruckForMenu!);
+            handleMenuClose();
+          }}
+        >
+          Editar
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleDeleteOpen(selectedTruckForMenu!);
+            handleMenuClose();
+          }}
+        >
+          Excluir
+        </MenuItem>
+      </Menu>
+
       <Box
         display="flex"
         justifyContent="space-between"

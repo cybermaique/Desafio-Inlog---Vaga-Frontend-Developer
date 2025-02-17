@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
-import { TRUCK_TABLE_COLUMNS } from "../../constants/table";
-import { TruckWithDistance } from "../../interfaces/truck-normalized";
+import { TRUCK_TABLE_COLUMNS } from "../../../constants/table";
+import { TruckWithDistance } from "../../../interfaces/truck";
 import { TruckTable } from "./table";
 
 const mockTrucks: TruckWithDistance[] = [

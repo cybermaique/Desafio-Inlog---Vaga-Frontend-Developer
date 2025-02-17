@@ -1,17 +1,17 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import { TruckNormalized } from "../../interfaces/truck-normalized";
+import { TruckApiResponse } from "../../interfaces/truck";
 import truckIcon from "../../utils/map/truck-icon";
 
 interface MapProps {
-  readonly trucks: readonly TruckNormalized[];
-  readonly selectedTruck: TruckNormalized | null;
+  readonly trucks: readonly TruckApiResponse[];
+  readonly selectedTruck: TruckApiResponse | null;
 }
 
 const FlyToTruck = ({
   selectedTruck,
 }: {
-  selectedTruck: TruckNormalized | null;
+  selectedTruck: TruckApiResponse | null;
 }) => {
   const map = useMap();
   if (selectedTruck) {
@@ -47,6 +47,8 @@ export const TruckViewMap = ({ trucks, selectedTruck }: MapProps) => {
             Placa: {truck.license_plate}
             <br />
             Rastreador: {truck.tracker_serial_number}
+            <br />
+            Início: {truck.start_date}
           </Popup>
         </Marker>
       ))}

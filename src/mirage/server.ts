@@ -1,5 +1,5 @@
 import { createServer, Model, Response } from "miragejs";
-import { TRUCKS_SERVER } from "../__mocks__/trucks-server.mock";
+import { TRUCKS } from "../__mocks__/trucks-server.mock";
 
 export function makeServer() {
   return createServer({
@@ -8,16 +8,8 @@ export function makeServer() {
     },
 
     seeds(server) {
-      TRUCKS_SERVER.forEach((truck) => {
-        server.create("truck", {
-          id: truck.id,
-          identifier: `Caminhão ${truck.id} - ${truck.city} (${truck.uf})`,
-          license_plate: truck.plate,
-          tracker_serial_number: `T${truck.id}${truck.id}${truck.id}${truck.id}${truck.id}`,
-          coordinates: { latitude: truck.lat, longitude: truck.lon },
-          image: truck.image,
-          start_date: truck.start_date,
-        });
+      TRUCKS.forEach((truck) => {
+        server.create("truck", truck);
       });
     },
 
@@ -44,7 +36,46 @@ export function makeServer() {
           return new Response(400, {}, { error: "Dados inválidos" });
         }
 
-        return schema.create("truck", newTruck);
+        return schema.create("truck", { ...newTruck });
+      });
+
+      this.put("/caminhao/:id", (schema, request) => {
+        let id = request.params.id;
+        let updatedTruck = JSON.parse(request.requestBody);
+
+        let truck = schema.find("truck", id);
+
+        if (!truck) {
+          return new Response(404, {}, { error: "Caminhão não encontrado" });
+        }
+
+        if (
+          !updatedTruck.license_plate ||
+          !updatedTruck.tracker_serial_number ||
+          !updatedTruck.coordinates ||
+          !updatedTruck.identifier
+        ) {
+          return new Response(400, {}, { error: "Dados inválidos" });
+        }
+
+        truck.update(updatedTruck);
+        return truck;
+      });
+
+      this.delete("/caminhao/:id", (schema, request) => {
+        let id = request.params.id;
+        let truck = schema.find("truck", id);
+
+        if (!truck) {
+          return new Response(404, {}, { error: "Caminhão não encontrado" });
+        }
+
+        truck.destroy();
+        return new Response(
+          200,
+          {},
+          { message: "Caminhão excluído com sucesso" }
+        );
       });
     },
   });
