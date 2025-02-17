@@ -1,8 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  TruckNormalized,
-  TruckWithDistance,
-} from "../interfaces/truck-normalized";
+import { TruckApiResponse, TruckWithDistance } from "../interfaces/truck";
 import {
   formatLicensePlate,
   getDistance,
@@ -105,7 +102,7 @@ describe("Truck Utility Functions", () => {
     expect(distance).toBeCloseTo(5837.24, 2);
   });
 
-  const trucks: TruckNormalized[] = [
+  const trucks: TruckApiResponse[] = [
     {
       id: "1",
       identifier: "1",

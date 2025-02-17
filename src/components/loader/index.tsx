@@ -9,7 +9,7 @@ export const Loader = () => {
     <Backdrop
       sx={{
         color: colors.royalAzure,
-        zIndex: (theme) => theme.zIndex.drawer + 1,
+        zIndex: (theme) => theme.zIndex.drawer + 999,
       }}
       open={isLoading}
       data-testid="backdrop"

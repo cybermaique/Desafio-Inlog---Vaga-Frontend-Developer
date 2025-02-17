@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { fetcher } from "../api/fetcher";
-import { TruckNormalized } from "../interfaces/truck-normalized";
+import { TruckApiResponse } from "../interfaces/truck";
 
 export const useGetTrucks = () => {
-  return useSWR<TruckNormalized[]>("/api/caminhoes", fetcher);
+  return useSWR<TruckApiResponse[]>("/api/caminhoes", fetcher);
 };

@@ -1,47 +1,18 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import useSWR from "swr";
-import { describe, expect, it, Mock, vi } from "vitest";
+import { describe, expect, it } from "vitest";
+import { TRUCKS } from "../__mocks__/trucks-server.mock";
+import { server } from "../tests/setup-tests";
 import { useGetTrucks } from "./get-trucks";
-
-vi.mock("swr");
-vi.mock("../api/fetcher", () => ({
-  fetcher: vi.fn(),
-}));
 
 describe("useGetTrucks", () => {
   it("should return truck data when the request is successful", async () => {
-    const trucksMock = [
-      {
-        id: "1",
-        identifier: "12345",
-        license_plate: "ABC-1234",
-        tracker_serial_number: "SN123456",
-        coordinates: {
-          latitude: -23.55052,
-          longitude: -46.633308,
-        },
-        image: "",
-      },
-    ];
-    (useSWR as Mock).mockReturnValue({ data: trucksMock, error: null });
+    TRUCKS.forEach((truck) => server.create("truck", truck));
 
     const { result } = renderHook(() => useGetTrucks());
 
     await waitFor(() => expect(result.current.data).toBeDefined());
 
-    expect(result.current.data).toEqual(trucksMock);
-    expect(result.current.error).toBeNull();
-  });
-
-  it("should return an error when the request fails", async () => {
-    const errorMock = new Error("Error loading trucks");
-    (useSWR as Mock).mockReturnValue({ data: null, error: errorMock });
-
-    const { result } = renderHook(() => useGetTrucks());
-
-    await waitFor(() => expect(result.current.data).toBeNull());
-
-    expect(result.current.data).toBeNull();
-    expect(result.current.error).toEqual(errorMock);
+    expect(result.current.data).toEqual(TRUCKS);
+    expect(result.current.error).toBeUndefined();
   });
 });

@@ -1,89 +1,49 @@
-import { Box, Button, Container, Paper } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { Box, Container, Paper } from "@mui/material";
 import { TruckFilters } from "../../components/list-truck/filters";
-import { TruckTable } from "../../components/list-truck/table";
+import DeleteTruckDialog from "../../components/list-truck/modals/delete-truck";
+import EditTruckDialog from "../../components/list-truck/modals/edit-truck";
+import { TruckTable } from "../../components/list-truck/table/table";
 import { TruckViewMap } from "../../components/list-truck/truck-view-map";
 import NoResults from "../../components/no-results";
 import PageHeader from "../../components/page-header";
 import { TruckListSkeleton } from "../../components/skeleton";
 import { PAPER_STYLES } from "../../constants/styles";
-import useUserLocation from "../../hooks/use-user-location";
-import {
-  TruckNormalized,
-  TruckWithDistance,
-} from "../../interfaces/truck-normalized";
-import { useGetTrucks } from "../../services/get-trucks";
-import { useLoadingStore } from "../../stores/loading";
-import { useSnackbarStore } from "../../stores/snackbar";
-import { setTrucks } from "../../stores/truck-slice";
-import {
-  downloadTruckReport,
-  sortAndFilterTrucks,
-} from "../../utils/list-truck";
+import { useActionsTable } from "../../containers/use-actions-table";
+import { useListTruck } from "../../containers/use-list-truck";
+import { useTruckFilters } from "../../containers/use-truck-filters";
 
 const ListTruck = () => {
-  const dispatch = useDispatch();
-  const { setLoading } = useLoadingStore();
-  const { showSnackbar } = useSnackbarStore();
-  const userLocation = useUserLocation();
-  const { data: trucks, error, isLoading } = useGetTrucks();
-  const [selectedTruck, setSelectedTruck] = useState<TruckNormalized | null>(
-    null
-  );
-  const [isDistanceDescending, setIsDistanceDescending] = useState(false);
+  const {
+    selectedTruck,
+    setSelectedTruck,
+    openEditDialog,
+    openDeleteDialog,
+    handleEditOpen,
+    handleEditClose,
+    handleDeleteOpen,
+    handleDeleteClose,
+    handleSaveEdit,
+    handleConfirmDelete,
+    handleChangeField,
+    handleChangeDate,
+  } = useActionsTable();
 
-  const [filters, setFilters] = useState({
-    licensePlate: "",
-    trackerSerialNumber: "",
-    maxDistance: "",
-  });
-  const [appliedFilters, setAppliedFilters] = useState(filters);
-  const [filteredTrucks, setFilteredTrucks] = useState<TruckWithDistance[]>([]);
-  const hasData = !isLoading && filteredTrucks.length > 0;
+  const {
+    filters,
+    setFilters,
+    appliedFilters,
+    handleSearch,
+    handleKeyDown,
+    handleClear,
+  } = useTruckFilters();
 
-  const handleSearch = () => setAppliedFilters(filters);
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") handleSearch();
-  };
-
-  const handleClear = () => {
-    const clearedFilters = {
-      licensePlate: "",
-      trackerSerialNumber: "",
-      maxDistance: "",
-    };
-    setFilters(clearedFilters);
-    setAppliedFilters(clearedFilters);
-  };
-
-  useEffect(() => {
-    if (userLocation) {
-      setFilteredTrucks(
-        sortAndFilterTrucks(
-          trucks ?? [],
-          appliedFilters,
-          isDistanceDescending,
-          userLocation
-        )
-      );
-    }
-  }, [appliedFilters, trucks, isDistanceDescending, userLocation]);
-
-  useEffect(() => {
-    setLoading(isLoading);
-  }, [isLoading, setLoading]);
-
-  useEffect(() => {
-    if (error) showSnackbar("Erro ao carregar os veículos.", "error");
-  }, [error, showSnackbar]);
-
-  useEffect(() => {
-    if (trucks) {
-      dispatch(setTrucks(trucks));
-    }
-  }, [trucks, dispatch]);
+  const {
+    trucks: filteredTrucks,
+    isLoading,
+    isDistanceDescending,
+    setIsDistanceDescending,
+    hasData,
+  } = useListTruck(appliedFilters);
 
   return (
     <Container maxWidth={false} aria-busy={isLoading}>
@@ -102,7 +62,6 @@ const ListTruck = () => {
               onClear={handleClear}
             />
           )}
-
           {(isLoading || hasData) && (
             <TruckViewMap
               key={filteredTrucks.length}
@@ -110,29 +69,35 @@ const ListTruck = () => {
               selectedTruck={selectedTruck}
             />
           )}
-
           {isLoading && <TruckListSkeleton />}
           {!isLoading && filteredTrucks.length === 0 && <NoResults />}
           {hasData && (
-            <>
-              <TruckTable
-                trucks={filteredTrucks}
-                selectedTruck={selectedTruck}
-                setSelectedTruck={setSelectedTruck}
-                setIsDistanceDescending={setIsDistanceDescending}
-                isDistanceDescending={isDistanceDescending}
-              />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => downloadTruckReport(filteredTrucks)}
-              >
-                Baixar Relatório PDF
-              </Button>
-            </>
+            <TruckTable
+              trucks={filteredTrucks}
+              selectedTruck={selectedTruck}
+              setSelectedTruck={setSelectedTruck}
+              setIsDistanceDescending={setIsDistanceDescending}
+              isDistanceDescending={isDistanceDescending}
+              handleEditOpen={handleEditOpen}
+              handleDeleteOpen={handleDeleteOpen}
+            />
           )}
         </Paper>
       </Box>
+      <EditTruckDialog
+        open={openEditDialog}
+        selectedTruck={selectedTruck}
+        handleEditClose={handleEditClose}
+        handleSaveEdit={handleSaveEdit}
+        handleChangeField={handleChangeField}
+        handleChangeDate={handleChangeDate}
+      />
+      <DeleteTruckDialog
+        open={openDeleteDialog}
+        selectedTruck={selectedTruck}
+        handleDeleteClose={handleDeleteClose}
+        handleConfirmDelete={handleConfirmDelete}
+      />
     </Container>
   );
 };

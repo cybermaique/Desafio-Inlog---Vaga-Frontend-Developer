@@ -3,13 +3,8 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 import ListTruck from ".";
-import {
-  TruckNormalized,
-  TruckWithDistance,
-} from "../../interfaces/truck-normalized";
+import { TruckApiResponse, TruckWithDistance } from "../../interfaces/truck";
 import { useGetTrucks } from "../../services/get-trucks";
-import { useLoadingStore } from "../../stores/loading";
-import { useSnackbarStore } from "../../stores/snackbar";
 import { store } from "../../stores/store";
 import { getDistance, sortAndFilterTrucks } from "../../utils/list-truck";
 
@@ -24,8 +19,20 @@ vi.mock("../../utils/list-truck", () => ({
   formatLicensePlate: vi.fn(),
 }));
 
+vi.mock("../../stores/loading", () => ({
+  useLoadingStore: vi.fn(() => ({
+    setLoading: vi.fn(),
+  })),
+}));
+
+vi.mock("../../stores/snackbar", () => ({
+  useSnackbarStore: vi.fn(() => ({
+    showSnackbar: vi.fn(),
+  })),
+}));
+
 describe("ListTruck Component", () => {
-  const mockTrucks: TruckNormalized[] = [
+  const mockTrucks: TruckApiResponse[] = [
     {
       id: "1",
       identifier: "1",
@@ -65,12 +72,6 @@ describe("ListTruck Component", () => {
       data: mockTrucks,
       error: null,
       isLoading: false,
-    });
-    (useLoadingStore as unknown as Mock).mockReturnValue({
-      setLoading: vi.fn(),
-    });
-    (useSnackbarStore as unknown as Mock).mockReturnValue({
-      showSnackbar: vi.fn(),
     });
 
     (getDistance as Mock).mockImplementation((lat1, lon1, lat2, lon2) => {
