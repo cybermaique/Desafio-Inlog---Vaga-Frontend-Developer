@@ -84,6 +84,17 @@ Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Fron
 
 ---
 
+## Observações ⚠️
+
+- **Uso do Redux**: Embora o Redux tenha sido utilizado no projeto para gerenciar o estado global dos caminhões após as requisições à API, esse gerenciamento não é essencial para a aplicação. O Redux foi implementado como parte do desafio técnico, mas sua utilização pode ser vista mais como um teste e um extra, pois não achei necessário a utilização completo do mesmo devido ao tamanho atual do projeto.
+- **Gerenciamento do Estado Global**: Para gerenciar o estado global do snackbar e do loading, foi utilizado o **Zustand**, que proporciona uma abordagem mais leve e eficiente para esses casos de uso, sendo uma solução mais adequada e simples para o gerenciamento de estados localizados na aplicação.
+- **Responsividade**: Não foquei no design responsivo para esse projeto, pois o tempo para o desafio foi um fator limitante. Meu principal foco foi garantir que as funcionalidades principais, como a listagem de caminhões, o cadastro de veículos e os testes unitários, estivessem bem implementadas. Caso o prazo fosse maior, eu teria dedicado mais tempo para aprimorar a responsividade e garantir que a aplicação fosse totalmente adaptável a diferentes dispositivos.
+- **Padrão Smart Container**: Nos últimos commits, apliquei o padrão smart container na listagem de caminhões. Este padrão foi adotado porque, com o crescimento da aplicação, é importante separar a lógica de negócio e o gerenciamento de estado dos componentes de apresentação. Isso facilita a manutenção do código, criação de testes e melhora a escalabilidade e torna a aplicação mais modular. Com o tempo, esse padrão vai ajudar a reduzir a complexidade e facilitar a inclusão de novas funcionalidades sem grandes alterações na estrutura do projeto.
+
+Com isso, em um projeto real, eu teria iniciado aplicando tanto a responsividade quanto o padrão smart container desde o começo.
+
+---
+
 ## Tecnologias Utilizadas 🛠️
 
 - **React**: Biblioteca principal para construção da interface.
@@ -104,6 +115,7 @@ Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Fron
 - **JSPDF & JSPDF-Autotable**: Geração de PDFs, incluindo tabelas formatadas.
 - **React Router**: Para gerenciamento de rotas.
 - **Styled Components**: Para estilização dos componentes.
+- **Day.js**: Biblioteca de manipulação de datas que foi escolhida ao invés do Date-fns por ser mais leve e ter uma API similar ao moment.js, oferecendo uma experiência de uso mais simples e rápida, além de ser recomendada pela documentação do MUI.
 - **PNPM**: Gerenciador de pacotes eficiente e rápido, com as seguintes vantagens:
   - Instalação de dependências mais rápida, utilizando links simbólicos e economizando espaço em disco.
   - Cache global que melhora a performance e reduz o tempo de download entre projetos.
@@ -121,13 +133,6 @@ Este projeto foi desenvolvido como parte do desafio técnico para a vaga de Fron
 - **ESLint**: Linter para manter a padronização do código.
 - **Prettier**: Formatação automática do código.
 - **Sonar Scanner**: Análise de código para identificar bugs e vulnerabilidades.
-
----
-
-## Observações ⚠️
-
-- **Uso do Redux**: Embora o Redux tenha sido utilizado no projeto para gerenciar o estado global dos caminhões após as requisições à API, esse gerenciamento não é essencial para a aplicação. O Redux foi implementado como parte do desafio técnico, mas sua utilização pode ser vista mais como um teste e um extra, pois não achei necessário a utilização completo do mesmo devido ao tamanho atual do projeto.
-- **Gerenciamento do Estado Global**: Para gerenciar o estado global do snackbar e do loading, foi utilizado o **Zustand**, que proporciona uma abordagem mais leve e eficiente para esses casos de uso, sendo uma solução mais adequada e simples para o gerenciamento de estados localizados na aplicação.
 
 ---
 
